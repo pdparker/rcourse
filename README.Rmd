@@ -49,4 +49,4 @@ Regards,
 
 Phil
 
-P.S. This webpage was written and compiler in R. We will not cover it but R can produce work documents, PDFs, webpages, interactive webpages, and powerpoint presentations.  
+P.S. This webpage was written and compiler in R. We will not cover it but R can produce word documents, PDFs, webpages, interactive webpages, and powerpoint presentations.  
