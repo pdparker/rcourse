@@ -1,0 +1,57 @@
+---
+title: "Preliminary Information"
+output: html_document
+---
+
+Hi All,
+
+Before the course start in the coming weeks I wanted to send some resources your way. We all go through most of this in the course but it is sometimes helpful to get ahead.
+
+First thing first
+------------------
+
+You need to install R.
+
+* For [windows](https://www.youtube.com/watch?v=mfGFv-iB724&feature=youtu.be) watch this video.
+* For [mac](https://www.youtube.com/watch?v=Icawuhf0Yqo&feature=youtu.be) watch this video.
+* For [linux](https://github.com/swirldev/swirl/wiki/Installing-swirl-on-Linux) check this link as it is not as easy as sudo apt-get.
+
+This will install R on your computer but the graphical user interface is terrible. So we will all be working with [Rstudio](http://www.rstudio.com/). To install go to go [here](http://www.rstudio.com/products/rstudio/#Desk)
+
+For beginners guide to R:
+
+* [Swirl](http://swirlstats.com/) is an interactive tutorial that people rave about. To use it you would do the following. Open R studio and type:
+
+```{r, eval=FALSE}
+install.packages("swirl")
+library("swirl")
+swirl()             
+```
+
+* The best book for learning R is [The art of programming in R](http://www.amazon.com/The-Art-Programming-Statistical-Software/dp/1593273843)
+* Links for all sorts of R related goodness can be found [here](http://www.talkstats.com/showthread.php/5246-Info-for-R-users-(Links-Manuals-Books-etc.))
+* A bunch of courses can be found [here](https://www.coursera.org/courses?categories=stats) but I would recommend working through [this](https://www.coursera.org/specialization/jhudatascience/1?utm_medium=listingPage) for a comprehensive understanding of all things R.
+
+HELP!!!!!!!!!!!!
+---------------
+
+Where to go to get help? Before listing resources you need to know how to ask good questions (not as easy as it sounds). [Here](http://www.talkstats.com/showthread.php/14960-Forum-Guidelines-Smart-posting-behavior-pays-off) is a good overview. Remember R is free and community resourced meaning NO ONE is paid to help you (or to be nice to you for that matter). If you show effort you will get amazing support if you are lazy you are likely to be yelled at.
+
+These are the places to go listed in order of nicest to meanest:
+
+* [Talk Stats](http://www.talkstats.com/) is the best place for all things statistics and R
+* [Stack overflow](https://stackoverflow.com/questions/tagged/r) for more advanced users
+* [Cross validate](https://stats.stackexchange.com/) for all things statistical
+* ...
+* [R mailing list](https://stat.ethz.ch/mailman/listinfo/r-help) is often manned by the folks who help develop R  **but** folks on here can make Gordon Ramsay look like a fluffy kitten.
+
+Other Stuff:
+-------------
+
+I think everyone should know how to use version control software. The most popular is [Git](https://en.wikipedia.org/wiki/Git_%28software%29) which is built into Rstudio. Personally I use [github](https://github.com/). I will not be covering this but it is worth knowing. THe course will have a github repo which will have all the course material ready for you to download.
+
+Regards,
+
+Phil
+
+P.S. This webpage was written and compiler in R. We will not cover it but R can produce work documents, PDFs, webpages, interactive webpages, and powerpoint presentations.  
