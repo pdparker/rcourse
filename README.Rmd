@@ -1,8 +1,3 @@
----
-title: "Preliminary Information"
-output: html_document
----
-
 Hi All,
 
 Before the course start in the coming weeks I wanted to send some resources your way. We all go through most of this in the course but it is sometimes helpful to get ahead.
