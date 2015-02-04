@@ -26,6 +26,7 @@ swirl()
 * The best book for learning R is [The art of programming in R](http://www.amazon.com/The-Art-Programming-Statistical-Software/dp/1593273843)
 * Links for all sorts of R related goodness can be found [here](http://www.talkstats.com/showthread.php/5246-Info-for-R-users-(Links-Manuals-Books-etc.))
 * A bunch of courses can be found [here](https://www.coursera.org/courses?categories=stats) but I would recommend working through [this](https://www.coursera.org/specialization/jhudatascience/1?utm_medium=listingPage) for a comprehensive understanding of all things R.
+* [This](https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md#r) list of books.
 
 HELP!!!!!!!!!!!!
 ---------------
