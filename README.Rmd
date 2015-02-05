@@ -1,6 +1,6 @@
 Hi All,
 
-Before the course start in the coming weeks I wanted to send some resources your way. We all go through most of this in the course but it is sometimes helpful to get ahead.
+Before the course start in the coming weeks I wanted to send some resources your way. We all go through most of this in the course but it is sometimes helpful to get ahead. The outline of the course structure is [below](#structure).
 
 First thing first
 ------------------
@@ -51,3 +51,48 @@ Regards,
 Phil
 
 P.S. This webpage was written and compiler in R. We will not cover it but R can produce word documents, PDFs, webpages, interactive webpages, and powerpoint presentations.  
+
+
+Course Structure
+=========================
+<a name="structure"></a>
+
+
+Day 1:
+-------------
+Part  1 -  Getting Started
+
+* Installing and initial introduction to R and Rstudio
+* What forms does data take in R?
+* Installing packages
+* Getting your data into and out of R
+* Creating and using toy data
+* Getting help and asking good questions
+ 
+Part 2 - Where is my data?!
+
+* Slicing, dicing, and splitting data?
+* Basic descriptives
+* Merging and aggregating
+* Manipulating and managing
+ 
+Day 2:
+------------------
+Part 1 - Cleaning
+
+* Looking inside - names, dimensions, types, structures
+* Summarizing data
+* Recoding
+* Write your own functions
+* Missing data 
+ 
+Part 2 - Exploring and Modelling Data
+
+* Plotting data - The basics
+* The psych package - Never reverse code again!
+* Regression, correlations, etc.
+* Modelling data - Quick overviews of critical packages
+  * lme4 - Multilevel models made simple
+  * lavaan - SEM that's cheaper than Mplus
+  * survey - weights and multiple imputations
+  * ggplot - grammar of graphs
