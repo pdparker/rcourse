@@ -1,0 +1,144 @@
+---
+title: "Day 1 Part 1"
+author: "Philip Parker"
+date: "6 February 2015"
+output:
+  slidy_presentation:
+     duration: 30
+     css: css/reveal.css
+
+---
+
+## Why R
+
+- Free
+- Comprehensive
+- Flexible
+- Does everything (interactive websites, reproducible research)
+- In some cases you have no choice
+- Great support for parallel processing
+- It's fast...er
+- Plenty of support from multiple sources (e.g., Facebook, twitter, census data, web scrapping)
+
+
+## Why not R
+- It is a stupid inconsistent [language](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf)
+- It is a full language not a macro language (e.g. spss). The learning curve is steep!!
+- It is community supported so no one is paid to be nice to you
+- Error messages are designed for those familiar with the language
+
+
+## Some things are just easier in R
+Some things are just easier in R:
+
+- Say goodbye to reverse scored items
+- Dummy coding
+- Multilevel modeling
+- glm
+- SEM
+
+```
+
+## Did I mention pretty graphs?
+```{r, echo=FALSE}
+# Earth at night in R
+# took about 30 minutes to code
+
+library(maps)
+data(world.cities)
+#subset minor and major cities
+minmajdat=world.cities[world.cities$pop>10000,]
+
+#subset major cities
+majdat=world.cities[world.cities$pop>100000,]
+
+#subset huge cities
+hdat=world.cities[world.cities$pop>1000000,]
+
+ranker=rank(world.cities$pop)
+
+par(bg=rgb(0,0,0.025),mex=0.5,mar=c(0,0,0,0))
+
+map("world",col=rgb(0,0,0.55,
+alpha=0.05),interior=F,fill=T)
+
+#plot huge cities
+points(hdat$lat[ranker]~hdat$long[ranker],col=rgb(0.25,0.25,0,alpha=0.05)
+,pch='.',cex=(hdat$pop)^c(1/100))
+
+# illumate the night
+
+  for(i in 1:5){
+points(jitter(world.cities$lat[ranker],1)~jitter(world.cities$long[ranker],1),
+col=rgb(230/255,232/255, 250/255,alpha=0.0075),pch='.',cex=(world.cities$pop)^c(1/100))
+	}
+
+#create light haze arround minor & major cities
+	for(i in 1:5){
+icol=rgb(0.7,0.7,0.7,alpha=0.02)
+points(jitter(minmajdat$lat[ranker],10)~
+jitter(minmajdat$long[ranker],10),
+col=icol,pch='.',cex=(minmajdat$pop)^c(1/100))
+	}
+
+#create yellow light haze arround major cities
+	for(i in 1:6){
+icol=rgb(1,1,0,alpha=0.02)
+points(jitter(majdat$lat[ranker],10)~
+jitter(majdat$long[ranker],10),
+col=icol,pch='.',cex=(majdat$pop)^c(1/100))
+	}
+
+#create bright light haze arround huge cities
+	for(i in 1:6){
+icol=rgb(1,1,1,alpha=0.02)
+points(jitter(hdat$lat[ranker],10)~
+jitter(hdat$long[ranker],10),
+col=icol,pch='.',cex=(hdat$pop)^c(1/100))
+	}
+```
+
+## Pretend you are working!
+```{r, eval=FALSE}
+## install.packages('fun')
+library(fun)
+mine_sweeper()
+gomoku()
+```
+
+
+## Installing R
+Notes for how to install are located [here](https://github.com/pdparker/rcourse)
+
+- R is the programming language and can be installed [here](http://cran.r-project.org/)
+- R studio is the better GUI and can be installed [here](http://www.rstudio.com/products/rstudio/download/)
+
+Rstudio now covers:
+
+  - R programming
+  - R graphics
+  - R markdown for word documents, PDFs, web pages
+  - Shiny for interactive web pages
+  - Git for version control
+  - We will only work with R programming in this course
+  
+Lets look at Rstudio now
+  
+## Repoduciable Research
+Rs greatest strength is reproduciblity. To leverage this:
+
+- Don't be lazy
+- Comment comment comment
+
+```{r, eval=FALSE}
+#This is a comment. Have lots of them in your script.
+```
+
+- Never use point and click menus
+- Have a quarantined data file. 
+- Only create new data files if it costs you lots of time
+- Make your code clean, use indentation.
+- Use descriptive names
+- BE CONSISTENT!!! I use camelCase for everything
+
+

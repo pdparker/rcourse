@@ -1,0 +1,144 @@
+---
+title: "Day 1 Part 1 - Data"
+author: "Philip Parker"
+date: "6 February 2015"
+output:
+  slidy_presentation:
+     duration: 30
+     css: css/reveal.css
+
+---
+## My first R program - Assignment
+```{r}
+# The symbol <- is used to assign something to an object.
+myFirst <- "Hello World!"
+myFirst
+# Everything in R is a function. 
+#Functions are called via a name then brackets
+print(myFirst)
+cat(myFirst)
+#Lets do it a different way
+myFirst2 <- c("Hello", "World", "!")
+print(myFirst2)#yuck
+paste(myFirst2, collapse = " ")# OK I suppose
+cat(myFirst, sep = " ")# Nice
+#We can assign the results of a function to an object
+myFirst3 <- paste(myFirst2, collapse = " ")
+myFirst3
+#Be Carful as you can easily overwrite an object
+myFirst3 <- "Hello Joe"
+myFirst3# oh no!!!!
+```
+
+
+## R basics (the boring bits) - Data forms
+Forms data can take include:
+
+- Integer: 1, 2, 3
+- Numeric: 1.0, .2, 3.6
+- Logical: TRUE, FALSE
+- Character: "one", "two", "three"
+- Missing: NA
+
+## Vectors
+A vector is the simpliest data type. All elements have to have the same form
+```{r}
+#vector - Interger
+c(1,2,3,4, NA)
+# Numeric
+c(1.3,4.0,5,NA,7.5, .2)
+#Logical
+c(NA,TRUE,FALSE,TRUE)
+#Character
+c("One", "Fish", "Two", "Fish", NA)
+#This will not work - will convert everything to a string
+c(1,TRUE,"one")
+```
+
+## Factors 
+Factors are special character vectors
+```{r}
+#Nominal
+gender <- c(rep("male",5), rep("female", 10)) 
+gender <- factor(gender) 
+gender
+#Ordinal
+height <- c(rep("Phil",5), rep("Joe", 5), rep("Herb", 5))
+height <- factor(height, ordered=TRUE)
+height
+```
+
+
+## Lists
+A list is a collection of objects of any type or form
+```{r}
+int <- c(1,2,3,4, NA)
+num <- 3.14
+log <- "FALSE"
+char <- c("One", "Fish", "Two", "Fish", NA)
+
+myList <- list(int=int,num=num,log=log,char=char, phrase="Hello World")
+myList
+```
+
+## Matrix
+A matrix is a two dimensional vector (rows, columns) of the same data form
+```{r}
+myMatrix <- matrix(1:100, nrow=10, ncol=10)
+myMatrix
+#not So helpful
+colnames(myMatrix) <- paste0("C_",letters[1:10])
+row.names(myMatrix)<- paste0("R_", letters[1:10])
+myMatrix
+```
+
+##Data Frame
+A data.frame is a structured list (rows, columns) of any data form. This is the ONLY format that SPSS uses.
+
+```{r}
+myData <- data.frame(var1 = 1:10, var2 = letters[1:10], var3=rep(c(TRUE,FALSE), 5))
+myData
+```
+
+This format is mostly how you want your data read into R
+
+## Data
+Suprisingly most people give up on R in the first few minutes because they cannot get there data into R. Here are the main things you need:
+
+- Know the path to where your data is located
+- Know the working directory R is using
+- Know the format that your data is in
+- Know how to check your data is there
+- Don't use the point and click features! 
+
+## Data - where is it
+
+- R is based on unix OS so using "/" to seperate folders rather than "\". 
+- Your default home location will be represented by a "~" sign  
+- Lets see if a file exists (use the 'tab' key for code completion)
+```{r}
+file.exists("~/Dropbox/Rcourse/data/PISA2003.sav")
+```
+- Getting and setting Rs working directory
+```{r}
+getwd()
+setwd("~/Dropbox/Rcourse/data")
+file.exists("PISA2003.sav")
+
+```
+- Read in the data
+```{r, eval=FALSE}
+#Assumes you have set the working directory!!
+#csv data
+myData <- read.csv("myCSV.csv", header=TRUE, na.strings = c(-97, -98, -999) )
+#txt file - tab deliminated
+myData <- read.table("myText.txt", header = TRUE, sep = "\t", na.strings = -999)
+#Read in SPSS data
+library(foreign)
+myData <- read.spss("mySPSS.sav", to.data.frame = TRUE, use.value.labels = FALSE)
+```
+
+- Foreign will also read in minitab, SAS, stata, etc.
+- R also has great support for SQL and other databases.
+
+
