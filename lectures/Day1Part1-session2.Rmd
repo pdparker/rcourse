@@ -8,7 +8,7 @@ output:
      css: css/reveal.css
 
 ---
-## My first R program - Assignment
+## My first R program - Assignment {.smaller}
 ```{r}
 # The symbol <- is used to assign something to an object.
 myFirst <- "Hello World!"
@@ -153,13 +153,28 @@ help(MplusAutomation)
 - csv: ?write.csv
 - txt: ?write.table
 - spss: ?write.foreign
-- Mplus:
+- Mplus: ?prepareMplusData
+
+## Pulling it all together
 ```{r}
+#Set the working directory
 setwd("~/Dropbox/Rcourse/data")
-library(foreign)
-library(MplusAutomation)
+#Load the required packages
+library(foreign)# read spss data
+library(MplusAutomation) # write for spss
+#read the data
 myData <- read.spss("PISA2003.sav", to.data.frame = TRUE, use.value.labels = FALSE)
+#Check it read in ok
+dim(myData)
+#Advanced! Make that easier to read
+sprintf("The number of cases is: %d and the number of variables is: %d", 
+        nrow(myData), length(myData)
+        )
+#Write to mplus file and get a mplus template file
 prepareMplusData(myData[,276:316], filename = "mplus.dat")
+#Advanced! Write the template file to a folder
+#Here I have put a dummy file location so you should 
+capture.output(prepareMplusData(myData[,276:316], filename = "mplus.dat"), file = "mplus.inp")
 ```
 
 

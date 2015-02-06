@@ -1,0 +1,93 @@
+---
+title: "Day 1 Part 1 - Data"
+author: "Philip Parker"
+date: "6 February 2015"
+output:
+  slidy_presentation:
+     duration: 30
+     css: css/reveal.css
+
+---
+
+
+## Example data
+- R has many example data sets so does most packages. To see a list of them
+```{r}
+data()
+```
+- To load an example data set
+```{r}
+data(iris)
+head(iris)
+```
+
+## Toy data
+- R is great for simulation BUT that is not a topic for this course
+- BUT maybe we want to create a toy dataset to play with
+
+
+## Regression1
+A regression equation is:
+$Y = \alpha + \beta_{1} X + \epsilon$
+
+- Y is a continous response variable
+- alpha is mean value conditioned on the other predictors
+- beta is weight applied to the predictor X
+- epsilon is residual variance distributed as $N \sim (0,\sigma)$
+
+## Regression2
+```{r}
+n <- 100
+x <- rnorm(n, mean = 10, sd = 5)
+y.hat <- 2 + 1.2*x
+y <- y.hat + rnorm(n, mean = 0, sd = 3)
+myD <- data.frame(x = x, y.observed = y)
+model1 <- lm(y ~ x, data = myD)
+summary(model1)
+
+```
+
+## Regression3
+I ran this with n = 10,100,1000, 10 000 the results where:
+
+| n         | alpha | beta |
+|-----------|-------|------|
+| simulated | 2     | 1.2  |
+| 10        | .322  | 1.37 |
+| 100       | 2.43  | 1.16 |
+| 1000      | 1.85  | 1.22 |
+| 10,000    | 2.07  | 1.19 |
+
+## Simulation from Correlation or Covariance matrix
+```{r}
+library(MASS)
+Sigma <- matrix(c(1,.8082,.8082,1),2,2)
+Sigma
+myD <- mvrnorm(n=1000, rep(0, 2), Sigma)
+cor(myD)
+```
+
+## Getting help
+In R:
+
+- Error messages - READ THEM!
+- ?function
+
+Help files have the following structure:
+
+- Usage: function(argument = 1, argumentYouSupply, ...)
+- Arguments: Explinations of what the arguments in useage are for and do
+- Sometimes there is a list of what the function returns (useful!)
+- Examples of how to use the function (USE THESE!!!)
+
+## Outside of R you need to ask good questions
+
+- Do your homework first and debug  - also read the error message you are getting!
+- Reduced your problem to the simplist form that still returns an error (usually isolates the problem)
+- Google
+- Use meaningful titles (I see 5 to 10 "Please Help" titled threads a day!)
+- Be specific, be direct, explain in full, re-read to check that the question would make sense to someone other than you
+- Describe what you are trying to do not the outcome
+- Give example data and code tried (this is what simulation and toy data are for)
+- Don't just give a function but give the package it came from
+- RTFM
