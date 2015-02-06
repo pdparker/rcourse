@@ -141,4 +141,25 @@ myData <- read.spss("mySPSS.sav", to.data.frame = TRUE, use.value.labels = FALSE
 - Foreign will also read in minitab, SAS, stata, etc.
 - R also has great support for SQL and other databases.
 
+## Installing and using packages
+```{r, eval=FALSE}
+install.packages("MplusAutomation")
+library(MplusAutomation)
+help(MplusAutomation)
+?prepareMplusData
+```
+
+## Exporting data
+- csv: ?write.csv
+- txt: ?write.table
+- spss: ?write.foreign
+- Mplus:
+```{r}
+setwd("~/Dropbox/Rcourse/data")
+library(foreign)
+library(MplusAutomation)
+myData <- read.spss("PISA2003.sav", to.data.frame = TRUE, use.value.labels = FALSE)
+prepareMplusData(myData[,276:316], filename = "mplus.dat")
+```
+
 

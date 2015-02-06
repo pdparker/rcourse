@@ -236,6 +236,42 @@ myData &lt;-<span class="st"> </span><span class="kw">read.spss</span>(<span cla
 <li>R also has great support for SQL and other databases.</li>
 </ul>
 </div>
+<div id="installing-and-using-packages" class="slide section level2">
+<h1>Installing and using packages</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;MplusAutomation&quot;</span>)
+<span class="kw">library</span>(MplusAutomation)
+<span class="kw">help</span>(MplusAutomation)
+?prepareMplusData</code></pre>
+</div>
+<div id="exporting-data" class="slide section level2">
+<h1>Exporting data</h1>
+<ul>
+<li>csv: ?write.csv</li>
+<li>txt: ?write.table</li>
+<li>spss: ?write.foreign</li>
+<li>Mplus:</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;~/Dropbox/Rcourse/data&quot;</span>)
+<span class="kw">library</span>(foreign)
+<span class="kw">library</span>(MplusAutomation)
+myData &lt;-<span class="st"> </span><span class="kw">read.spss</span>(<span class="st">&quot;PISA2003.sav&quot;</span>, <span class="dt">to.data.frame =</span> <span class="ot">TRUE</span>, <span class="dt">use.value.labels =</span> <span class="ot">FALSE</span>)</code></pre>
+<pre><code>## Warning in read.spss(&quot;PISA2003.sav&quot;, to.data.frame = TRUE,
+## use.value.labels = FALSE): PISA2003.sav: Unrecognized record type 7,
+## subtype 18 encountered in system file</code></pre>
+<pre><code>## re-encoding from UTF-8</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prepareMplusData</span>(myData[,<span class="dv">276</span>:<span class="dv">316</span>], <span class="dt">filename =</span> <span class="st">&quot;mplus.dat&quot;</span>)</code></pre>
+<pre><code>## Warning in prepareMplusData(myData[, 276:316], filename = &quot;mplus.dat&quot;):
+## The file 'mplus.dat' currently exists and will be overwritten</code></pre>
+<pre><code>## TITLE: Your title goes here
+## DATA: FILE = &quot;mplus.dat&quot;;
+## VARIABLE: 
+## NAMES = ESCS PV1MATH PV2MATH PV3MATH PV4MATH PV5MATH PV1MATH1 PV2MATH1 PV3MATH1
+##      PV4MATH1 PV5MATH1 PV1MATH2 PV2MATH2 PV3MATH2 PV4MATH2 PV5MATH2 PV1MATH3
+##      PV2MATH3 PV3MATH3 PV4MATH3 PV5MATH3 PV1MATH4 PV2MATH4 PV3MATH4 PV4MATH4
+##      PV5MATH4 PV1READ PV2READ PV3READ PV4READ PV5READ PV1SCIE PV2SCIE PV3SCIE
+##      PV4SCIE PV5SCIE PV1PROB PV2PROB PV3PROB PV4PROB PV5PROB; 
+## MISSING=.;</code></pre>
+</div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->
   <script>
