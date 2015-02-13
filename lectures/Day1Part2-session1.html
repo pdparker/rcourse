@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Philip Parker" />
-  <title>Day 1 Part 1 - Data</title>
+  <title>Day 1 Part 2 - Playing with Data</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
@@ -34,212 +34,119 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </head>
 <body>
 <div class="slide titlepage">
-  <h1 class="title">Day 1 Part 1 - Data</h1>
+  <h1 class="title">Day 1 Part 2 - Playing with Data</h1>
   <p class="author">
 Philip Parker
   </p>
   <p class="date">6 February 2015</p>
 </div>
-<div id="example-data" class="slide section level2">
-<h1>Example data</h1>
+<div id="basic-descriptives" class="slide section level2">
+<h1>Basic Descriptives</h1>
 <ul>
-<li>R has many example data sets so does most packages. To see a list of them</li>
+<li>For the rest of the day we will work with a single clean dataset with some missing.</li>
+<li>We are also going to add new column: id, schoolid, gender</li>
+<li>To do this we will have to take the date from class matrix to class data.frame</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>()</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(psych)
+<span class="kw">data</span>(ability)
+<span class="kw">class</span>(ability)
+ability &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(ability)
+<span class="kw">names</span>(ability)
+<span class="co">#add new variable</span>
+ability$id &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="kw">nrow</span>(ability)
+ability$school.id &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span>:<span class="dv">61</span>, <span class="dt">each =</span> <span class="dv">25</span>)
+ability$gender &lt;-<span class="st"> &quot;F&quot;</span>
+ability[<span class="kw">sample</span>(<span class="dv">1</span>:<span class="dv">1525</span>, <span class="dv">600</span>), <span class="st">&quot;gender&quot;</span>] &lt;-<span class="st"> &quot;M&quot;</span>
+ability$gender &lt;-<span class="st"> </span><span class="kw">factor</span>(ability$gender)
+<span class="kw">names</span>(ability)
+<span class="kw">str</span>(ability)</code></pre>
+</div>
+<div id="basic-descriptives---single-variable" class="slide section level2">
+<h1>Basic Descriptives - Single Variable</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># This will strangely return NA</span>
+<span class="kw">mean</span>(ability$reason<span class="fl">.4</span>)</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Default action for missing in R is to fail. Need to tell it don't do that</span>
+<span class="kw">mean</span>(ability$reason<span class="fl">.4</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre>
+<pre><code>## [1] 0.6761442</code></pre>
 <ul>
-<li>To load an example data set</li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(iris)
-<span class="kw">head</span>(iris)</code></pre>
-<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
-</div>
-<div id="toy-data" class="slide section level2">
-<h1>Toy data</h1>
-<ul>
-<li>R is great for simulation</li>
-<li>Maybe we want to create a toy dataset to play with</li>
-</ul>
-</div>
-<div id="basics-of-simulation" class="slide section level2">
-<h1>Basics of simulation</h1>
-<ul>
-<li>Bias = The expeted value is not the population value</li>
-<li>Consistency = How often is the observed value equal to the expected value</li>
-<li>Efficency = How tighly packed are repeated observations</li>
-</ul>
-</div>
-<div id="simulation---bias" class="slide section level2">
-<h1>Simulation - Bias</h1>
-<p>Population has a <span class="math">\(\mu = 0\)</span> and <span class="math">\(\sigma = 1\)</span></p>
-<pre class="sourceCode r"><code class="sourceCode r">myFunction &lt;-<span class="st"> </span>function(x) <span class="kw">sprintf</span>(<span class="st">&quot;The mean is %.2f and the SD is %.2f&quot;</span>, <span class="kw">mean</span>(x), <span class="kw">sd</span>(x))
-<span class="co">#bias</span>
-<span class="kw">myFunction</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rchisq</span>(<span class="dv">100</span>,<span class="dv">2</span>))))</code></pre>
-<pre><code>## [1] &quot;The mean is 2.03 and the SD is 0.19&quot;</code></pre>
-</div>
-<div id="consistency" class="slide section level2">
-<h1>Consistency</h1>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#consistency</span>
-<span class="co"># n = 1</span>
-<span class="kw">sum</span>(<span class="kw">abs</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">1</span>)))) &lt;<span class="st"> </span>.<span class="dv">5</span>)</code></pre>
-<pre><code>## [1] 43</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10 </span>
-<span class="kw">sum</span>(<span class="kw">abs</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>)))) &lt;<span class="st"> </span>.<span class="dv">5</span>)</code></pre>
-<pre><code>## [1] 87</code></pre>
-</div>
-<div id="efficency" class="slide section level2">
-<h1>Efficency</h1>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Efficency</span>
-<span class="co">#n = 1</span>
-<span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">1</span>))))</code></pre>
-<pre><code>## [1] 1.111747</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10</span>
-<span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>))))</code></pre>
-<pre><code>## [1] 0.3097433</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10000</span>
-<span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10000</span>))))</code></pre>
-<pre><code>## [1] 0.01080563</code></pre>
-</div>
-<div id="regression1" class="slide section level2">
-<h1>Regression1</h1>
-<p>A regression equation is: <span class="math">\(Y = \alpha + \beta_{1} X + \epsilon\)</span></p>
-<ul>
-<li>Y is a continous response variable</li>
-<li>alpha is mean value conditioned on the other predictors</li>
-<li>beta is weight applied to the predictor X</li>
-<li>epsilon is residual variance distributed as <span class="math">\(N \sim (0,\sigma)\)</span></li>
+<li>Try median, range, min, max, table</li>
+<li>Read the help menu on quantile and return ONLY the 2.5 and 97.5% quantiles</li>
 </ul>
 </div>
-<div id="regression2" class="slide section level2">
-<h1>Regression2</h1>
-<pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">100</span>
-x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">5</span>)
-y.hat &lt;-<span class="st"> </span><span class="dv">2</span> +<span class="st"> </span><span class="fl">1.2</span>*x
-y &lt;-<span class="st"> </span>y.hat +<span class="st"> </span><span class="kw">rnorm</span>(n, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">3</span>)
-myD &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y.observed =</span> y)
-model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y ~<span class="st"> </span>x, <span class="dt">data =</span> myD)
-<span class="kw">summary</span>(model1)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = y ~ x, data = myD)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -8.8116 -2.2042 -0.0246  2.3030  8.6174 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  2.51019    0.72286   3.473 0.000769 ***
-## x            1.14532    0.06691  17.119  &lt; 2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 3.312 on 98 degrees of freedom
-## Multiple R-squared:  0.7494, Adjusted R-squared:  0.7468 
-## F-statistic:   293 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-<div id="regression3" class="slide section level2">
-<h1>Regression3</h1>
-<p>I ran this with n = 10,100,1000, 10 000 the results where:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">n</th>
-<th align="left">alpha</th>
-<th align="left">beta</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">simulated</td>
-<td align="left">2</td>
-<td align="left">1.2</td>
-</tr>
-<tr class="even">
-<td align="left">10</td>
-<td align="left">.322</td>
-<td align="left">1.37</td>
-</tr>
-<tr class="odd">
-<td align="left">100</td>
-<td align="left">2.43</td>
-<td align="left">1.16</td>
-</tr>
-<tr class="even">
-<td align="left">1000</td>
-<td align="left">1.85</td>
-<td align="left">1.22</td>
-</tr>
-<tr class="odd">
-<td align="left">10,000</td>
-<td align="left">2.07</td>
-<td align="left">1.19</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="simulation-from-correlation-or-covariance-matrix" class="slide section level2">
-<h1>Simulation from Correlation or Covariance matrix</h1>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MASS)
-Sigma &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,.<span class="dv">8082</span>,.<span class="dv">8082</span>,<span class="dv">1</span>),<span class="dv">2</span>,<span class="dv">2</span>)
-Sigma</code></pre>
-<pre><code>##        [,1]   [,2]
-## [1,] 1.0000 0.8082
-## [2,] 0.8082 1.0000</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">myD &lt;-<span class="st"> </span><span class="kw">mvrnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">2</span>), Sigma)
-<span class="kw">cor</span>(myD)</code></pre>
-<pre><code>##           [,1]      [,2]
-## [1,] 1.0000000 0.8243263
-## [2,] 0.8243263 1.0000000</code></pre>
-</div>
-<div id="getting-help" class="slide section level2">
-<h1>Getting help</h1>
-<p>In R:</p>
+<div id="basic-descriptives---multiple-variables" class="slide section level2">
+<h1>Basic Descriptives - Multiple Variables</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(ability)
+<span class="kw">describe</span>(ability)</code></pre>
 <ul>
-<li>Error messages - READ THEM!</li>
-<li>?function</li>
-</ul>
-<p>Help files have the following structure:</p>
-<ul>
-<li>Usage: function(argument = 1, argumentYouSupply, …)</li>
-<li>Arguments: Explinations of what the arguments in useage are for and do</li>
-<li>Sometimes there is a list of what the function returns (useful!)</li>
-<li>Examples of how to use the function (USE THESE!!!)</li>
+<li>Read documentation on describeBy and get statistics for the FIRST 4 variables by gender</li>
 </ul>
 </div>
-<div id="outside-of-r-you-need-to-ask-good-questions" class="slide section level2">
-<h1>Outside of R you need to ask good questions</h1>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(fortunes)
-<span class="kw">fortune</span>(<span class="st">&quot;Brain surgery&quot;</span>)</code></pre>
-<pre><code>## 
-## I wish to perform brain surgery this afternoon at 4pm and don't know where
-## to start. My background is the history of great statistician sports
-## legends but I am willing to learn. I know there are courses and numerous
-## books on brain surgery but I don't have the time for those. Please direct
-## me to the appropriate HowTos, and be on standby for solving any problem I
-## may encounter while in the operating room. Some of you might ask for
-## specifics of the case, but that would require my following the posting
-## guide and spending even more time than I am already taking to write this
-## note.
-##    -- I. Ben Fooled (aka Frank Harrell)
-##       R-help (April 1, 2005)</code></pre>
-</div>
-<div id="outside-of-r-you-need-to-ask-good-questions-1" class="slide section level2">
-<h1>Outside of R you need to ask good questions</h1>
+<div id="apply-family" class="slide section level2">
+<h1>Apply family</h1>
 <ul>
-<li>Do your homework first and debug - also read the error message you are getting!</li>
-<li>Reduced your problem to the simplist form that still returns an error (usually isolates the problem)</li>
-<li>Google</li>
-<li>Use meaningful titles (I see 5 to 10 “Please Help” titled threads a day!)</li>
-<li>Be specific, be direct, explain in full, re-read to check that the question would make sense to someone other than you</li>
-<li>Describe what you are trying to do not the outcome</li>
-<li>Give example data and code tried (this is what simulation and toy data are for)</li>
-<li>Don’t just give a function but give the package it came from</li>
+<li>The apply family is R’s compact version of for loops.</li>
+<li>We will look at apply and tapply</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(ability[,<span class="dv">1</span>:<span class="dv">4</span>], <span class="dv">2</span>, mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre>
+<pre><code>##  reason.4 reason.16 reason.17 reason.19 
+## 0.6761442 0.7272727 0.7375000 0.6435440</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(ability$reason<span class="fl">.4</span>, ability$gender, mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre>
+<pre><code>##         F         M 
+## 0.6662844 0.6912281</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#scale score</span>
+ability$reason &lt;-<span class="st"> </span><span class="kw">apply</span>(ability[,<span class="dv">1</span>:<span class="dv">4</span>],<span class="dv">1</span>,mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre>
+<ul>
+<li>Create scale scores for the other variables</li>
+<li>Use functions learnt above to explore the new variables</li>
+<li>Plot the new variables: Try plot, hist, boxplot</li>
+<li>We will look at better ways of creating scale scores next time</li>
+</ul>
+</div>
+<div id="subsetting-and-splitting" class="slide section level2">
+<h1>Subsetting and splitting</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Splitting data</span>
+schoolAbility &lt;-<span class="st"> </span><span class="kw">split</span>(ability, ability$school.id)
+<span class="co"># Subsetting data</span>
+girls &lt;-<span class="st"> </span><span class="kw">subset</span>(ability, <span class="dt">subset =</span> gender ==<span class="st"> &quot;F&quot;</span>)
+boys &lt;-<span class="st"> </span><span class="kw">subset</span>(ability, <span class="dt">subset =</span> gender ==<span class="st"> &quot;M&quot;</span>)</code></pre>
+<ul>
+<li>lookup the lapply and sapply commands. Can you get summary statistics for each school?</li>
+</ul>
+</div>
+<div id="merge" class="slide section level2">
+<h1>Merge</h1>
+<p>There are three main merging comands in r:</p>
+<ul>
+<li>rbind or rbind.data.frame for stacking data (rbind.fill in the plyr package for unbalanced data)</li>
+<li>cbind or cbind.data.frame for putting columns together</li>
+<li>merge</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Stack data</span>
+ability2 &lt;-<span class="st"> </span><span class="kw">rbind.data.frame</span>(girls,boys)
+<span class="co">#Create some new data to add</span>
+myMatrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">1525</span>*<span class="dv">5</span>, <span class="dv">5</span>,<span class="dv">2</span>), <span class="dt">nrow=</span><span class="dv">1525</span>)
+<span class="kw">colnames</span>(myMatrix) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;MathSC&quot;</span>, <span class="st">&quot;EngSC&quot;</span>, <span class="st">&quot;SocialSC&quot;</span>, <span class="st">&quot;GeneralSC&quot;</span>, <span class="st">&quot;ParentSC&quot;</span>)
+<span class="co"># Merge using cbind</span>
+ability3 &lt;-<span class="st"> </span><span class="kw">cbind.data.frame</span>(ability, myMatrix)
+<span class="co">#Merge by ID</span>
+myPersonality &lt;-<span class="st"> </span><span class="kw">data.frame</span>(myMatrix)
+myPersonality$id &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="dv">1525</span>, <span class="dv">1525</span>)
+ability4 &lt;-<span class="st"> </span><span class="kw">merge</span>(ability, myPersonality, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre>
+</div>
+<div id="aggregation" class="slide section level2">
+<h1>Aggregation</h1>
+<ul>
+<li>Ok so no IPPE presentation is complete without reference to the BFLP</li>
+<li>So how would we add a school average reason score to our data</li>
+<li>We need both aggregate, name, and merge functions</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">schoolAvg &lt;-<span class="st"> </span><span class="kw">aggregate</span>(ability$reason, <span class="dt">by =</span> <span class="kw">list</span>(ability$school.id), mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
+<span class="kw">names</span>(schoolAvg) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;school.id&quot;</span>, <span class="st">&quot;avg.reason&quot;</span>)
+abilityBFLPE &lt;-<span class="st"> </span><span class="kw">merge</span>(ability, schoolAvg, <span class="dt">by =</span> <span class="st">&quot;school.id&quot;</span>)</code></pre>
+<ul>
+<li>How might you aggregate multple variables at a time</li>
+<li>How could we aggregate by both school.id and gender</li>
 </ul>
 </div>
 

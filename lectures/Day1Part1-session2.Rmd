@@ -8,37 +8,68 @@ output:
      css: css/reveal.css
 
 ---
-## My first R program - Assignment {.smaller}
-```{r}
-# The symbol <- is used to assign something to an object.
-myFirst <- "Hello World!"
-myFirst
-# Everything in R is a function. 
-#Functions are called via a name then brackets
-print(myFirst)
-cat(myFirst)
-#Lets do it a different way
-myFirst2 <- c("Hello", "World", "!")
-print(myFirst2)#yuck
-paste(myFirst2, collapse = " ")# OK I suppose
-cat(myFirst, sep = " ")# Nice
-#We can assign the results of a function to an object
-myFirst3 <- paste(myFirst2, collapse = " ")
-myFirst3
-#Be Carful as you can easily overwrite an object
-myFirst3 <- "Hello Joe"
-myFirst3# oh no!!!!
-```
+## R basics (the boring bits) - Introduction to Object Orientated Programming
 
+This is NOT a technical introduction but a pragmatic introduction.
 
-## R basics (the boring bits) - Data forms
-Forms data can take include:
+Everything in R is:
+
+- An element
+- A container or object
+- A function
+
+## R basics (the boring bits) - Elements
+'Classes' data can take include:
 
 - Integer: 1, 2, 3
 - Numeric: 1.0, .2, 3.6
 - Logical: TRUE, FALSE
 - Character: "one", "two", "three"
-- Missing: NA
+- Missing: NA, NULL
+
+## Objects
+Objects in R are just containers that you put elements into for storage.
+
+To put something in a  container we use the assignment symbols:
+
+- object.name <- stuff you want put in the container
+
+Containers come in the form of:
+
+ - Vectors: 1 or more elements of the same class e.g. 1,2,3
+ - Factors: character vector with 'special' properties "male", "female", "female"
+ - List: 1 or more objects of any type 1,"A", TURE
+ - Matrix: A two-dimensional vector with attributes [rows:columns]
+ - Dataframe: A two-dimensional list with attributes [rows:columns]
+ - Array: an N dimensional vector
+ 
+## Functions
+
+A function takes input, transforms it, and returns output. Examples include:
+
+- mean, sd, range, min, max
+- lm, t.test, aov, anova, sem, cfa
+- summary, plot, str, names, print, cat
+
+## My first R program - Assignment {.smaller}
+We are going to take a vector of characters assign to an object and apply a function to it
+```{r}
+# Object <- vector of character elements
+myFirst <- c("Hello","World!")
+#Function cat returning the elements in a nice format
+cat(myFirst, sep = " ")
+# Lets assign the output of a function to an object
+mySecond <- paste(myFirst, collapse = " ")
+# We can now apply functions to this and functions within functions. 
+# Lets shout out excitment at learning R
+cat(toupper(mySecond), sep = " ")
+```
+
+##Other functions to play with
+- Beginner: nchar, tolower
+- Intermediate: strsplit, substring
+- Advanced: gsub, plot with text
+
 
 ## Vectors
 A vector is the simpliest data type. All elements have to have the same form
@@ -55,6 +86,25 @@ c("One", "Fish", "Two", "Fish", NA)
 c(1,TRUE,"one")
 ```
 
+## Vector Indexing
+```{r}
+# Example vector
+myVect <- c(1.3,4.0,5,NA,7.5, .2)
+# Extract element 3
+myVect[3]
+# Extract elements 3 to 5
+myVect[3:5]
+# Extract non-consecutive elements
+myVect[c(1,3,6)]
+# Which elemnts are greated than 3
+which(myVect > 3) # can also use ==, <, <=, >=, !=
+#Extract them
+myVect[which(myVect > 3)]
+```
+
+## Functions to try
+- max, min, range, summary, plot, hist
+
 ## Factors 
 Factors are special character vectors
 ```{r}
@@ -68,6 +118,9 @@ height <- factor(height, ordered=TRUE)
 height
 ```
 
+## Functions to try
+- table
+- relevel
 
 ## Lists
 A list is a collection of objects of any type or form
@@ -81,6 +134,15 @@ myList <- list(int=int,num=num,log=log,char=char, phrase="Hello World")
 myList
 ```
 
+## Indexing lists
+```{r}
+#By name
+myList[["char"]]
+# By number
+myList[[4]]
+```
+
+
 ## Matrix
 A matrix is a two dimensional vector (rows, columns) of the same data form
 ```{r}
@@ -92,15 +154,36 @@ row.names(myMatrix)<- paste0("R_", letters[1:10])
 myMatrix
 ```
 
-##Data Frame
+##Indexing Matrices
+- Has the form [row,column]
+- Leaving one side empty is short hand for "give me all of them""
+```{r}
+# All columns and row 3
+myMatrix[3,]
+# All rows and column 4
+myMatrix[,4]
+# Cell row 3 column 3
+myMatrix[3,3]
+```
+
+
+## Data Frame
 A data.frame is a structured list (rows, columns) of any data form. This is the ONLY format that SPSS uses.
 
 ```{r}
 myData <- data.frame(var1 = 1:10, var2 = letters[1:10], var3=rep(c(TRUE,FALSE), 5))
-myData
+head(myData)
+names(myData)
+str(myData)
 ```
 
-This format is mostly how you want your data read into R
+## Indexing Data Frames
+```{r}
+#By name
+myData$var1
+#Using matrix indexing
+myData[1,1:2]
+```
 
 ## Data
 Suprisingly most people give up on R in the first few minutes because they cannot get there data into R. Here are the main things you need:
@@ -166,10 +249,15 @@ library(MplusAutomation) # write for spss
 myData <- read.spss("PISA2003.sav", to.data.frame = TRUE, use.value.labels = FALSE)
 #Check it read in ok
 dim(myData)
+names(myData)[1:4]
 #Advanced! Make that easier to read
 sprintf("The number of cases is: %d and the number of variables is: %d", 
         nrow(myData), length(myData)
         )
+```
+
+## Writing to Mplus
+```{r}
 #Write to mplus file and get a mplus template file
 prepareMplusData(myData[,276:316], filename = "mplus.dat")
 #Advanced! Write the template file to a folder

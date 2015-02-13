@@ -1,0 +1,108 @@
+---
+title: "Day 1 Part 2 - Playing with Data"
+author: "Philip Parker"
+date: "6 February 2015"
+output:
+  slidy_presentation:
+     duration: 30
+     css: css/reveal.css
+
+---
+
+
+## Basic Descriptives
+ - For the rest of the day we will work with a single clean dataset with some missing.
+ - We are also going to add new column: id, schoolid, gender
+ - To do this we will have to take the date from class matrix to class data.frame
+```{r, results='hide'}
+library(psych)
+data(ability)
+class(ability)
+ability <- as.data.frame(ability)
+names(ability)
+#add new variable
+ability$id <- 1:nrow(ability)
+ability$school.id <- rep(1:61, each = 25)
+ability$gender <- "F"
+ability[sample(1:1525, 600), "gender"] <- "M"
+ability$gender <- factor(ability$gender)
+names(ability)
+str(ability)
+```
+
+## Basic Descriptives - Single Variable
+```{r}
+# This will strangely return NA
+mean(ability$reason.4)
+# Default action for missing in R is to fail. Need to tell it don't do that
+mean(ability$reason.4, na.rm=TRUE)
+```
+
+- Try median, range, min, max, table
+- Read the help menu on quantile and return ONLY the 2.5 and 97.5% quantiles
+
+## Basic Descriptives - Multiple Variables
+```{r, eval=FALSE}
+summary(ability)
+describe(ability)
+```
+- Read documentation on describeBy and get statistics for the FIRST 4 variables by gender
+
+## Apply family
+- The apply family is R's compact version of for loops.
+- We will look at apply and tapply
+```{r}
+apply(ability[,1:4], 2, mean, na.rm=TRUE)
+tapply(ability$reason.4, ability$gender, mean, na.rm=TRUE)
+#scale score
+ability$reason <- apply(ability[,1:4],1,mean, na.rm=TRUE)
+```
+
+- Create scale scores for the other variables 
+- Use functions learnt above to explore the new variables
+- Plot the new variables: Try plot, hist, boxplot
+- We will look at better ways of creating scale scores next time
+
+## Subsetting and splitting
+```{r}
+# Splitting data
+schoolAbility <- split(ability, ability$school.id)
+# Subsetting data
+girls <- subset(ability, subset = gender == "F")
+boys <- subset(ability, subset = gender == "M")
+```
+
+- lookup the lapply and sapply commands. Can you get summary statistics for each school?
+
+## Merge
+There are three main merging comands in r:
+
+- rbind or rbind.data.frame for stacking data (rbind.fill in the plyr package for unbalanced data)
+- cbind or cbind.data.frame for putting columns together
+- merge
+```{r, eval=FALSE}
+#Stack data
+ability2 <- rbind.data.frame(girls,boys)
+#Create some new data to add
+myMatrix <- matrix(rnorm(1525*5, 5,2), nrow=1525)
+colnames(myMatrix) <- c("MathSC", "EngSC", "SocialSC", "GeneralSC", "ParentSC")
+# Merge using cbind
+ability3 <- cbind.data.frame(ability, myMatrix)
+#Merge by ID
+myPersonality <- data.frame(myMatrix)
+myPersonality$id <- sample(1:1525, 1525)
+ability4 <- merge(ability, myPersonality, by = "id")
+```
+
+## Aggregation
+- Ok so no IPPE presentation is complete without reference to the BFLP
+- So how would we add a school average reason score to our data
+- We need both aggregate, name, and merge functions
+```{r}
+schoolAvg <- aggregate(ability$reason, by = list(ability$school.id), mean, na.rm=TRUE)
+names(schoolAvg) <- c("school.id", "avg.reason")
+abilityBFLPE <- merge(ability, schoolAvg, by = "school.id")
+```
+- How might you aggregate multple variables at a time
+- How could we aggregate by both school.id and gender
+

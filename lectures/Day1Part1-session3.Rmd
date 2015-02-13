@@ -22,9 +22,40 @@ head(iris)
 ```
 
 ## Toy data
-- R is great for simulation BUT that is not a topic for this course
-- BUT maybe we want to create a toy dataset to play with
+- R is great for simulation
+- Maybe we want to create a toy dataset to play with
 
+## Basics of simulation
+- Bias = The expeted value is not the population value
+- Consistency = How often is the observed value equal to the expected value
+- Efficency = How tighly packed are repeated observations
+
+## Simulation - Bias
+Population has a $\mu = 0$ and $\sigma = 1$
+```{r}
+myFunction <- function(x) sprintf("The mean is %.2f and the SD is %.2f", mean(x), sd(x))
+#bias
+myFunction(replicate(100, mean(rchisq(100,2))))
+```
+
+## Consistency
+```{r}
+#consistency
+# n = 1
+sum(abs(replicate(100, mean(rnorm(1)))) < .5)
+# n = 10 
+sum(abs(replicate(100, mean(rnorm(10)))) < .5)
+```
+## Efficency
+```{r}
+# Efficency
+#n = 1
+sd(replicate(100, mean(rnorm(1))))
+# n = 10
+sd(replicate(100, mean(rnorm(10))))
+# n = 10000
+sd(replicate(100, mean(rnorm(10000))))
+```
 
 ## Regression1
 A regression equation is:
@@ -82,6 +113,12 @@ Help files have the following structure:
 
 ## Outside of R you need to ask good questions
 
+```{r}
+library(fortunes)
+fortune("Brain surgery")
+```
+
+## Outside of R you need to ask good questions
 - Do your homework first and debug  - also read the error message you are getting!
 - Reduced your problem to the simplist form that still returns an error (usually isolates the problem)
 - Google
@@ -90,4 +127,3 @@ Help files have the following structure:
 - Describe what you are trying to do not the outcome
 - Give example data and code tried (this is what simulation and toy data are for)
 - Don't just give a function but give the package it came from
-- RTFM
