@@ -12,7 +12,7 @@ output:
 
 ## Example data
 - R has many example data sets so does most packages. To see a list of them
-```{r}
+```{r, eval=FALSE}
 data()
 ```
 - To load an example data set

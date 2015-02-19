@@ -52,6 +52,18 @@ Phil
 
 P.S. This webpage was written and compiler in R. We will not cover it but R can produce word documents, PDFs, webpages, interactive webpages, and powerpoint presentations.  
 
+Installation
+=================
+All lecture notes can be downloaded using the Download ZIP file to the right. I have not included data, pdf, or html files to keep the total file size small. However instructions for downloading and in the exercise files. To create slides you can open the .Rmd files in Rstudio and click the knit button. For those with coding experience and using a Unix system (mac or linux) navigate to the exercise and lecture directories in the **terminal** and type make (see below). For the lecture slides you will need the very awesome [pandoc](http://johnmacfarlane.net/pandoc/) installed. 
+
+```
+$ cd /exercises
+$ make
+$ make clean
+```
+
+multiple clean options are avaliable, see the makefile for options.
+
 
 Course Structure
 =========================

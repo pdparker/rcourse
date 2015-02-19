@@ -81,30 +81,30 @@ Philip Parker
 <pre class="sourceCode r"><code class="sourceCode r">myFunction &lt;-<span class="st"> </span>function(x) <span class="kw">sprintf</span>(<span class="st">&quot;The mean is %.2f and the SD is %.2f&quot;</span>, <span class="kw">mean</span>(x), <span class="kw">sd</span>(x))
 <span class="co">#bias</span>
 <span class="kw">myFunction</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rchisq</span>(<span class="dv">100</span>,<span class="dv">2</span>))))</code></pre>
-<pre><code>## [1] &quot;The mean is 2.03 and the SD is 0.22&quot;</code></pre>
+<pre><code>## [1] &quot;The mean is 1.99 and the SD is 0.18&quot;</code></pre>
 </div>
 <div id="consistency" class="slide section level2">
 <h1>Consistency</h1>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#consistency</span>
 <span class="co"># n = 1</span>
 <span class="kw">sum</span>(<span class="kw">abs</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">1</span>)))) &lt;<span class="st"> </span>.<span class="dv">5</span>)</code></pre>
-<pre><code>## [1] 40</code></pre>
+<pre><code>## [1] 29</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10 </span>
 <span class="kw">sum</span>(<span class="kw">abs</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>)))) &lt;<span class="st"> </span>.<span class="dv">5</span>)</code></pre>
-<pre><code>## [1] 89</code></pre>
+<pre><code>## [1] 92</code></pre>
 </div>
 <div id="efficency" class="slide section level2">
 <h1>Efficency</h1>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Efficency</span>
 <span class="co">#n = 1</span>
 <span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">1</span>))))</code></pre>
-<pre><code>## [1] 1.001562</code></pre>
+<pre><code>## [1] 0.9989917</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10</span>
 <span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>))))</code></pre>
-<pre><code>## [1] 0.3402898</code></pre>
+<pre><code>## [1] 0.3128942</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10000</span>
 <span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10000</span>))))</code></pre>
-<pre><code>## [1] 0.008535659</code></pre>
+<pre><code>## [1] 0.01032493</code></pre>
 </div>
 <div id="regression1" class="slide section level2">
 <h1>Regression1</h1>
@@ -131,18 +131,18 @@ model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y ~<span class="
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -5.1852 -1.9698 -0.3951  2.3810  6.6697 
+## -8.1426 -1.7617  0.0517  1.6874  6.6426 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  1.85265    0.62428   2.968  0.00377 ** 
-## x            1.23875    0.05747  21.554  &lt; 2e-16 ***
+## (Intercept)  2.05545    0.68814   2.987  0.00356 ** 
+## x            1.19135    0.06266  19.011  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 2.8 on 98 degrees of freedom
-## Multiple R-squared:  0.8258, Adjusted R-squared:  0.824 
-## F-statistic: 464.6 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 2.741 on 98 degrees of freedom
+## Multiple R-squared:  0.7867, Adjusted R-squared:  0.7845 
+## F-statistic: 361.4 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="regression3" class="slide section level2">
 <h1>Regression3</h1>
@@ -194,9 +194,9 @@ Sigma</code></pre>
 ## [2,] 0.8082 1.0000</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">myD &lt;-<span class="st"> </span><span class="kw">mvrnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">2</span>), Sigma)
 <span class="kw">cor</span>(myD)</code></pre>
-<pre><code>##          [,1]     [,2]
-## [1,] 1.000000 0.800562
-## [2,] 0.800562 1.000000</code></pre>
+<pre><code>##           [,1]      [,2]
+## [1,] 1.0000000 0.8165632
+## [2,] 0.8165632 1.0000000</code></pre>
 </div>
 <div id="getting-help" class="slide section level2">
 <h1>Getting help</h1>
