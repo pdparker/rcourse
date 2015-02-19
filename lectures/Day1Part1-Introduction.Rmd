@@ -16,9 +16,11 @@ output:
 - Flexible
 - Does everything (interactive websites, reproducible research)
 - In some cases you have no choice
-- Great support for parallel processing
+- Great support for [parallel](http://www.r-bloggers.com/how-to-go-parallel-in-r-basics-tips/) processing
 - It's fast...er
-- Plenty of support from multiple sources (e.g., Facebook, twitter, census data, web scrapping)
+- Plenty of support from multiple data sources (e.g., Facebook, Twitter, weather, census data, web scrapping)
+- Established procedures for downloading, storing, managing, and analysing many large survey data (e.g. PISA)
+- R integrates and extends mplus, spss, python, C, Fortran, SQL, HTML/Markdown, ...
 
 
 ## Why not R
@@ -36,8 +38,6 @@ Some things are just easier in R:
 - Multilevel modeling
 - glm
 - SEM
-
-```
 
 ## Did I mention pretty graphs?
 ```{r, echo=FALSE}
@@ -98,6 +98,10 @@ col=icol,pch='.',cex=(hdat$pop)^c(1/100))
 	}
 ```
 
+## Interactive graphs
+<iframe src="http://rpubs.com/PhilipParker/plots2" width="800" height="800"></iframe>
+
+
 ## Pretend you are working!
 ```{r, eval=FALSE}
 ## install.packages('fun')
@@ -129,16 +133,19 @@ Rs greatest strength is reproduciblity. To leverage this:
 
 - Don't be lazy
 - Comment comment comment
+- Markdown is a super super easy language integrated into Rstudio for html, word, pdf, or slides
+- Go do a git course. Absolutely life saving!
 
 ```{r, eval=FALSE}
 #This is a comment. Have lots of them in your script.
 ```
 
-- Never use point and click menus
-- Have a quarantined data file. 
-- Only create new data files if it costs you lots of time
+## Repoduciable Research
+- Never use point and click menus (only time saving the FIRST time!!)
+- Have a quarantined data file. OR just use SQL and only give collaborators read permission 
+- Only create new data files if you have to!
 - Make your code clean, use indentation.
-- Use descriptive names
+- Use descriptive names - there is no silly 8 character limits for variable names in R
 - BE CONSISTENT!!! I use camelCase for everything
 
 

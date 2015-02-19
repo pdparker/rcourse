@@ -1,0 +1,68 @@
+---
+title: "Exercises - Part1"
+author: "Philip Parker"
+date: "18 February 2015"
+output: html_document
+---
+
+Slicing and Dicing
+--------------
+
+1. Download the PISA achievement data from here and the PISA psychological variables from here
+2. Create and save a new R script
+3. Use the following template to answer the questions
+
+Questions:
+-------------
+1. Set use.value.labels to FALSE adn then TRUE what differnce does it make to the data?
+2. Describe the psychology data by gender, yearInSchool, and IMMIG (immigration)
+3. Use tapply to replicate some of the results above for ESCS (ses)
+4. Use the apply command to get means for varibles "BELONG to ESCS"
+5. Replace mean with other functions you have learnt (e.g., max)
+6. Create a GPA variable from PV2MATH, PV2READ, PV2SCIE, and PV2PROB
+7. ADVANCED: Combin apply and tapply commands to replicate aspects of describeBy output
+8. ADVANCED: Create 5 GPA variables from the set of plausible values. Use apply to get a combined mean
+
+Agregation and Merging
+---------------------
+
+1. Add to the template below
+
+Questions
+---------
+1. Merge pisaAch with pisaPsych
+2. Aggregate the GPA score you developed above by school id
+3. What is the correlation between GPA, aggregated GPA and SCMAT?
+4. ADVANCED: Try regressing SCMAT on GPA and aggregated GPA
+5. ADVANCED: If you created the 5 GPA variables above, aggregate all five. Look at the package mitools and the imputationlist function and think about how you could package your data for analysis (you should have 5 datasets each with 1 of the GPA variables). Look at some other functions in the mitools package, how could you run regression with this sort of data?
+
+```{r}
+### Question Set 1 ###
+# read in the PISA achievement data
+  # see ?read.spss in the foreign package
+
+# read in PISA achievement data
+
+# See describeBy in the psych package
+
+# tapply functions
+
+#apply functions
+  # 1 =  apply by row
+  # 2 = apply by column
+
+### Question set 2 ###
+# merge data
+  #see ?merge
+
+# aggregate data
+  # see aggregate
+  
+ # use names to change the names in your new aggregated data set
+
+ # merge your aggregated GPA into your pisa dataset 
+
+
+## END ##
+```
+

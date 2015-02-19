@@ -75,7 +75,6 @@ y <- y.hat + rnorm(n, mean = 0, sd = 3)
 myD <- data.frame(x = x, y.observed = y)
 model1 <- lm(y ~ x, data = myD)
 summary(model1)
-
 ```
 
 ## Regression3

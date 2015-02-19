@@ -14,31 +14,31 @@ This is NOT a technical introduction but a pragmatic introduction.
 
 Everything in R is:
 
-- An element
-- A container or object
+- An element of a given type
+- An object (think container)
 - A function
 
 ## R basics (the boring bits) - Elements
-'Classes' data can take include:
+'Types' data can take include:
 
 - Integer: 1, 2, 3
 - Numeric: 1.0, .2, 3.6
 - Logical: TRUE, FALSE
 - Character: "one", "two", "three"
-- Missing: NA, NULL
+- Missing or otherwise indisposed: NA, NULL, NaN
 
 ## Objects
 Objects in R are just containers that you put elements into for storage.
 
-To put something in a  container we use the assignment symbols:
+To put something in a container we use the assignment symbols:
 
 - object.name <- stuff you want put in the container
 
 Containers come in the form of:
 
- - Vectors: 1 or more elements of the same class e.g. 1,2,3
- - Factors: character vector with 'special' properties "male", "female", "female"
- - List: 1 or more objects of any type 1,"A", TURE
+ - Vectors: 1 or more elements of the same type e.g. 1,2,3
+ - Factors: character vector with 'special' properties
+ - List: 1 or more objects of any type 1,"A", TRUE
  - Matrix: A two-dimensional vector with attributes [rows:columns]
  - Dataframe: A two-dimensional list with attributes [rows:columns]
  - Array: an N dimensional vector
@@ -72,7 +72,7 @@ cat(toupper(mySecond), sep = " ")
 
 
 ## Vectors
-A vector is the simpliest data type. All elements have to have the same form
+A vector is the simplest data type. All elements have to have the same form
 ```{r}
 #vector - Interger
 c(1,2,3,4, NA)
@@ -102,8 +102,16 @@ which(myVect > 3) # can also use ==, <, <=, >=, !=
 myVect[which(myVect > 3)]
 ```
 
+## Exercises
+- Create a vector with 15 numeric elements
+- Extract the 5th elements
+- Extract elements greater than 5
+- With the smallest code, extract every 2nd element (Intermediate)
+- Extract only even numbers or only odd numbers (Advanced)
+
 ## Functions to try
-- max, min, range, summary, plot, hist
+- max, min, range, summary, plot, hist, sort
+- Create a vector using the functions: sample, rep, rev
 
 ## Factors 
 Factors are special character vectors
@@ -119,7 +127,7 @@ height
 ```
 
 ## Functions to try
-- table
+- table and chisq.test
 - relevel
 
 ## Lists
@@ -165,7 +173,8 @@ myMatrix[,4]
 # Cell row 3 column 3
 myMatrix[3,3]
 ```
-
+- Try diag, upper.tri, lower.tri
+- As an example change the upper triangular elements to 0
 
 ## Data Frame
 A data.frame is a structured list (rows, columns) of any data form. This is the ONLY format that SPSS uses.
@@ -183,10 +192,12 @@ str(myData)
 myData$var1
 #Using matrix indexing
 myData[1,1:2]
+# By list indexing
+myData[["var1"]]
 ```
 
 ## Data
-Suprisingly most people give up on R in the first few minutes because they cannot get there data into R. Here are the main things you need:
+Surprisingly most people give up on R in the first few minutes because they cannot get there data into R. Here are the main things you need:
 
 - Know the path to where your data is located
 - Know the working directory R is using
@@ -196,7 +207,7 @@ Suprisingly most people give up on R in the first few minutes because they canno
 
 ## Data - where is it
 
-- R is based on unix OS so using "/" to seperate folders rather than "\". 
+- R is based on unix OS so using "/" to separate folders rather than "\". 
 - Your default home location will be represented by a "~" sign  
 - Lets see if a file exists (use the 'tab' key for code completion)
 ```{r}
@@ -246,10 +257,10 @@ setwd("~/Dropbox/Rcourse/data")
 library(foreign)# read spss data
 library(MplusAutomation) # write for spss
 #read the data
-myData <- read.spss("PISA2003.sav", to.data.frame = TRUE, use.value.labels = FALSE)
+myData <- read.spss("PISA2003-Achievement.sav", to.data.frame = TRUE, use.value.labels = FALSE)
 #Check it read in ok
 dim(myData)
-names(myData)[1:4]
+names(myData)
 #Advanced! Make that easier to read
 sprintf("The number of cases is: %d and the number of variables is: %d", 
         nrow(myData), length(myData)

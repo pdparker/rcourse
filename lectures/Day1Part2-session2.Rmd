@@ -1,0 +1,88 @@
+---
+title: "Day 1 Part 2 - Functions"
+author: "Philip Parker"
+date: "6 February 2015"
+output:
+  slidy_presentation:
+     duration: 30
+     css: css/reveal.css
+
+---
+
+
+## Writing your own functions
+
+- The general rule in R is if you find yourself doing something repeatedly make it a variable or a function
+- One of the major benefits of R is the ability to write your own functions
+- It is actually pretty easy to do. Here is a 'Hello World' function
+
+```{r}
+myFun <- function(){print("Hello World!!")} 
+myFun()
+```
+
+## Writing your own functions: The details
+
+The recipe for a function is as follows:
+
+- An object you want to assign your function to 'myFun <-'
+- The command function followed by arguments you want to supply 'function()'
+- The code you want the function to run and what you want it to return in curly brackets
+- Lets extend the function above to make it more personal
+
+## Writing your own functions: The details
+
+```{r}
+#function with 1 argument
+myFun <- function(yourName){
+  temp <- paste("Hello", yourName, "!!!" )
+  cat(temp)
+  }
+
+myFun("Phil")
+# function with 1 argument with a default setting
+myFun <- function(yourName = "Phil"){
+  temp <- paste("Hello", yourName, "!!!" )
+  cat(temp)
+  }
+
+myFun()
+myFun("Bob")
+```
+
+## Make it crazy
+```{r, eval=FALSE}
+#You can make it as crazy as you want
+myFun <- function(yourName = "Phil"){
+  temp <- paste("Hello", yourName, sep = "+")
+  url <- paste0("http://tts-api.com/tts.mp3?q=", temp, ".")
+  browseURL(url)
+  }
+
+myFun()
+ myFun("Bob")
+```
+
+## Multiple argument functions
+
+- Often I want both the central tendency and some measure of spred
+- But maybe I want it to be flexible enough to handle either paramtetric or nonparametric
+
+```{r}
+mySummary <- function(x, parametric="both"){
+  #x = a vector of type numeric or integer
+  #parametric = should function return parametric ('par'), non-parametric ('npar'), or both ('both')
+  if (parametric == 'both'){
+    temp = c(Mean = mean(x, na.rm=TRUE), SD = sd(x, na.rm=TRUE), 
+             Median = median(x, na.rm=TRUE), MAD = mad(x, na.rm=TRUE) )
+  }else if (parametric == 'par'){
+    temp = c(Mean = mean(x, na.rm=TRUE), SD = sd(x, na.rm=TRUE) )
+  }else {
+    temp = c(Median = median(x, na.rm=TRUE), MAD = mad(x, na.rm=TRUE) )
+  }
+  temp
+}
+
+mySummary(c(1,2,3,4,5,6,7))
+```
+
