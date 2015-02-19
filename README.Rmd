@@ -44,7 +44,7 @@ These are the places to go listed in order of nicest to meanest:
 Other Stuff:
 -------------
 
-I think everyone should know how to use version control software. The most popular is [Git](https://en.wikipedia.org/wiki/Git_%28software%29) which is built into Rstudio. Personally I use [github](https://github.com/). I will not be covering this but it is worth knowing. THe course will have a github repo which will have all the course material ready for you to download.
+I think everyone should know how to use version control software. The most popular is [Git](https://en.wikipedia.org/wiki/Git_%28software%29) which is built into Rstudio. Personally I use [github](https://github.com/). I will not be covering this but it is worth knowing. The course will have a github repo which will have all the course material ready for you to download.
 
 Regards,
 
@@ -62,7 +62,12 @@ $ make
 $ make clean
 ```
 
-multiple clean options are avaliable, see the makefile for options.
+multiple clean options are available, see the makefile for options.
+
+Example R code
+====================
+
+Feel free to check out of [github account](https://github.com/pdparker), [gist account](https://gist.github.com/pdparker), or [blinded for review website](https://github.com/blindedforreview) for my current projects. 
 
 
 Course Structure
