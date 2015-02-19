@@ -1,0 +1,39 @@
+---
+title: "ex.4"
+author: "Philip Parker"
+date: "19 February 2015"
+output: html_document
+---
+
+Instructions
+------------
+
+1. Save template file
+2. Modify template code to create own functions
+
+Questions
+-------------
+
+1. Use the apply function to apply mySummary to the first FOUR columns of the iris dataset
+2. Modify mySummary to produce your choice of summary statistics
+3. look at the cat function OR the sprintf function to make nicer output for mySummary
+4. There is no MODE function in R try writing a mode function and apply it to the column iris$Species
+5. ADVANCED: Write a function to extract only even rows from a data.frame
+6. ADVANCED: Modify mySummary so that it  works on data.frame or vectors AND that ONLY applied to data that is numeric or integer
+
+```{r}
+mySummary <- function(x, parametric="both"){
+  #x = a vector of type numeric or integer
+  #parametric = should function return parametric ('par'), non-parametric ('npar'), or both ('both')
+  if (parametric == 'both'){
+    temp = c(Mean = mean(x, na.rm=TRUE), SD = sd(x, na.rm=TRUE), 
+             Median = median(x, na.rm=TRUE), MAD = mad(x, na.rm=TRUE) )
+  }else if (parametric == 'par'){
+    temp = c(Mean = mean(x, na.rm=TRUE), SD = sd(x, na.rm=TRUE) )
+  }else {
+    temp = c(Median = median(x, na.rm=TRUE), MAD = mad(x, na.rm=TRUE) )
+  }
+  temp
+}
+```
+

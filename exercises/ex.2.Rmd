@@ -11,6 +11,24 @@ Simulation Regression
 1. Create and save a new R script
 2. Use the following template to answer the questions
 
+Toy data in R
+---------------
+1. load data iris and do a cross-tab on the column Species
+2. extract the first 2 variables from iris
+3. extract the first 15 rows from iris
+4. extract rows from iris in which petal length is greater than 1.5
+5. Which row/s have the largest Sepal width
+
+```{r}
+## See template file for exercise ex.2 ##
+#load iris data
+
+# Index from iris
+
+```
+
+
+
 Questions:
 -------------
 
@@ -60,7 +78,8 @@ Simulation data from correlation matrix:
 2. How does this change as n changes?
 3. Using lm as above run a regression model with destination social class predicted by origin social class. 
 4. Do so again but include education?
-5. In the pdf BD1967 p.63 a set of correlations are presented for Wisconsin. Generate data from these correlations are compare results for this data with the Blau and Duncan model.
+5. In the pdf [BD1967](https://www.dropbox.com/s/y60d2dvdm1m10q8/BD1967.pdf?dl=0) p.63 a set of correlations are presented for Wisconsin. Generate data from these correlations are compare results for this data with the Blau and Duncan model.
+6. Practice indexing by row and/or column from your dataset. Can you extract every second or every third row? What about datapoints that are only in cells with even reference points (i.e. [2,2] or [4,6])?
 
 ```{r}
 #install package MASS

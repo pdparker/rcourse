@@ -8,22 +8,22 @@ output: html_document
 Slicing and Dicing
 --------------
 
-1. Download the PISA achievement data from here and the PISA psychological variables from here
+1. Download the [PISA achievement data](https://www.dropbox.com/s/wz5p7of5q4cnkhi/PISA2003-Achievement.sav?dl=0) from here and the [PISA psychological variables](https://www.dropbox.com/s/v0k2joopom6lagj/PISA2003.sav?dl=0) from here
 2. Create and save a new R script
 3. Use the following template to answer the questions
 
 Questions:
 -------------
-1. Set use.value.labels to FALSE adn then TRUE what differnce does it make to the data?
+1. Set use.value.labels to FALSE and then TRUE what difference does it make to the data?
 2. Describe the psychology data by gender, yearInSchool, and IMMIG (immigration)
 3. Use tapply to replicate some of the results above for ESCS (ses)
-4. Use the apply command to get means for varibles "BELONG to ESCS"
+4. Use the apply command to get means for variables "BELONG to ESCS"
 5. Replace mean with other functions you have learnt (e.g., max)
 6. Create a GPA variable from PV2MATH, PV2READ, PV2SCIE, and PV2PROB
-7. ADVANCED: Combin apply and tapply commands to replicate aspects of describeBy output
+7. ADVANCED: Combine apply and tapply commands to replicate aspects of describeBy output
 8. ADVANCED: Create 5 GPA variables from the set of plausible values. Use apply to get a combined mean
 
-Agregation and Merging
+Aggregation and Merging
 ---------------------
 
 1. Add to the template below

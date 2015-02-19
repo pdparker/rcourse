@@ -70,9 +70,9 @@ Philip Parker
 <div id="basics-of-simulation" class="slide section level2">
 <h1>Basics of simulation</h1>
 <ul>
-<li>Bias = The expeted value is not the population value</li>
+<li>Bias = The expected value is not the population value</li>
 <li>Consistency = How often is the observed value equal to the expected value</li>
-<li>Efficency = How tighly packed are repeated observations</li>
+<li>Efficiency = How tightly packed are repeated observations</li>
 </ul>
 </div>
 <div id="simulation---bias" class="slide section level2">
@@ -81,36 +81,36 @@ Philip Parker
 <pre class="sourceCode r"><code class="sourceCode r">myFunction &lt;-<span class="st"> </span>function(x) <span class="kw">sprintf</span>(<span class="st">&quot;The mean is %.2f and the SD is %.2f&quot;</span>, <span class="kw">mean</span>(x), <span class="kw">sd</span>(x))
 <span class="co">#bias</span>
 <span class="kw">myFunction</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rchisq</span>(<span class="dv">100</span>,<span class="dv">2</span>))))</code></pre>
-<pre><code>## [1] &quot;The mean is 1.96 and the SD is 0.19&quot;</code></pre>
+<pre><code>## [1] &quot;The mean is 2.03 and the SD is 0.22&quot;</code></pre>
 </div>
 <div id="consistency" class="slide section level2">
 <h1>Consistency</h1>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#consistency</span>
 <span class="co"># n = 1</span>
 <span class="kw">sum</span>(<span class="kw">abs</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">1</span>)))) &lt;<span class="st"> </span>.<span class="dv">5</span>)</code></pre>
-<pre><code>## [1] 39</code></pre>
+<pre><code>## [1] 40</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10 </span>
 <span class="kw">sum</span>(<span class="kw">abs</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>)))) &lt;<span class="st"> </span>.<span class="dv">5</span>)</code></pre>
-<pre><code>## [1] 90</code></pre>
+<pre><code>## [1] 89</code></pre>
 </div>
 <div id="efficency" class="slide section level2">
 <h1>Efficency</h1>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Efficency</span>
 <span class="co">#n = 1</span>
 <span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">1</span>))))</code></pre>
-<pre><code>## [1] 1.015472</code></pre>
+<pre><code>## [1] 1.001562</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10</span>
 <span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>))))</code></pre>
-<pre><code>## [1] 0.3203493</code></pre>
+<pre><code>## [1] 0.3402898</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10000</span>
 <span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10000</span>))))</code></pre>
-<pre><code>## [1] 0.01086238</code></pre>
+<pre><code>## [1] 0.008535659</code></pre>
 </div>
 <div id="regression1" class="slide section level2">
 <h1>Regression1</h1>
 <p>A regression equation is: <span class="math"><em>Y</em> = <em>α</em> + <em>β</em><sub>1</sub><em>X</em> + <em>ϵ</em></span></p>
 <ul>
-<li>Y is a continous response variable</li>
+<li>Y is a continuous response variable</li>
 <li>alpha is mean value conditioned on the other predictors</li>
 <li>beta is weight applied to the predictor X</li>
 <li>epsilon is residual variance distributed as <span class="math"><em>N</em> ∼ (0, <em>σ</em>)</span></li>
@@ -131,18 +131,18 @@ model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y ~<span class="
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -6.8066 -1.7936 -0.0743  1.9041  7.7908 
+## -5.1852 -1.9698 -0.3951  2.3810  6.6697 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  2.33997    0.60819   3.847 0.000213 ***
-## x            1.10818    0.05786  19.152  &lt; 2e-16 ***
+## (Intercept)  1.85265    0.62428   2.968  0.00377 ** 
+## x            1.23875    0.05747  21.554  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 2.843 on 98 degrees of freedom
-## Multiple R-squared:  0.7892, Adjusted R-squared:  0.787 
-## F-statistic: 366.8 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 2.8 on 98 degrees of freedom
+## Multiple R-squared:  0.8258, Adjusted R-squared:  0.824 
+## F-statistic: 464.6 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="regression3" class="slide section level2">
 <h1>Regression3</h1>
@@ -194,9 +194,9 @@ Sigma</code></pre>
 ## [2,] 0.8082 1.0000</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">myD &lt;-<span class="st"> </span><span class="kw">mvrnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">2</span>), Sigma)
 <span class="kw">cor</span>(myD)</code></pre>
-<pre><code>##           [,1]      [,2]
-## [1,] 1.0000000 0.8228041
-## [2,] 0.8228041 1.0000000</code></pre>
+<pre><code>##          [,1]     [,2]
+## [1,] 1.000000 0.800562
+## [2,] 0.800562 1.000000</code></pre>
 </div>
 <div id="getting-help" class="slide section level2">
 <h1>Getting help</h1>
@@ -208,7 +208,7 @@ Sigma</code></pre>
 <p>Help files have the following structure:</p>
 <ul>
 <li>Usage: function(argument = 1, argumentYouSupply, ...)</li>
-<li>Arguments: Explinations of what the arguments in useage are for and do</li>
+<li>Arguments: Explanations of what the arguments in useage are for and do</li>
 <li>Sometimes there is a list of what the function returns (useful!)</li>
 <li>Examples of how to use the function (USE THESE!!!)</li>
 </ul>
@@ -234,7 +234,7 @@ Sigma</code></pre>
 <h1>Outside of R you need to ask good questions</h1>
 <ul>
 <li>Do your homework first and debug - also read the error message you are getting!</li>
-<li>Reduced your problem to the simplist form that still returns an error (usually isolates the problem)</li>
+<li>Reduced your problem to the simplest form that still returns an error (usually isolates the problem)</li>
 <li>Google</li>
 <li>Use meaningful titles (I see 5 to 10 &quot;Please Help&quot; titled threads a day!)</li>
 <li>Be specific, be direct, explain in full, re-read to check that the question would make sense to someone other than you</li>

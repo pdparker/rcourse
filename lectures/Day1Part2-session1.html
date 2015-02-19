@@ -126,7 +126,7 @@ boys &lt;-<span class="st"> </span><span class="kw">subset</span>(pisaPsych, <sp
 </div>
 <div id="merge" class="slide section level2">
 <h1>Merge</h1>
-<p>There are three main merging comands in r:</p>
+<p>There are three main merging commands in r:</p>
 <ul>
 <li>rbind or rbind.data.frame for stacking data (rbind.fill in the plyr package for unbalanced data)</li>
 <li>cbind or cbind.data.frame for putting columns together</li>
@@ -157,7 +157,7 @@ pisaAllData &lt;-<span class="st"> </span><span class="kw">merge</span>(pisaPsyc
 <span class="kw">names</span>(schoolAvg) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SCHOOLID.x&quot;</span>, <span class="st">&quot;avg.reason&quot;</span>)
 pisaAllData &lt;-<span class="st"> </span><span class="kw">merge</span>(pisaAllData, schoolAvg, <span class="dt">by =</span> <span class="st">&quot;SCHOOLID.x&quot;</span>)</code></pre>
 <ul>
-<li>How might you aggregate multple variables at a time</li>
+<li>How might you aggregate multiple variables at a time</li>
 <li>How could we aggregate by both school.id and gender</li>
 </ul>
 </div>

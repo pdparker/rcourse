@@ -99,7 +99,7 @@ myFirst &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st"
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lets assign the output of a function to an object</span>
 mySecond &lt;-<span class="st"> </span><span class="kw">paste</span>(myFirst, <span class="dt">collapse =</span> <span class="st">&quot; &quot;</span>)
 <span class="co"># We can now apply functions to this and functions within functions. </span>
-<span class="co"># Lets shout out excitment at learning R</span>
+<span class="co"># Lets shout out excitement at learning R</span>
 <span class="kw">cat</span>(<span class="kw">toupper</span>(mySecond), <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)</code></pre>
 <pre><code>## HELLO WORLD!</code></pre>
 </div>
@@ -114,7 +114,7 @@ mySecond &lt;-<span class="st"> </span><span class="kw">paste</span>(myFirst, <s
 <div id="vectors" class="slide section level2">
 <h1>Vectors</h1>
 <p>A vector is the simplest data type. All elements have to have the same form</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#vector - Interger</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#vector - Integer</span>
 <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>, <span class="ot">NA</span>)</code></pre>
 <pre><code>## [1]  1  2  3  4 NA</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Numeric</span>
@@ -143,7 +143,7 @@ myVect[<span class="dv">3</span>:<span class="dv">5</span>]</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract non-consecutive elements</span>
 myVect[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">6</span>)]</code></pre>
 <pre><code>## [1] 1.3 5.0 0.2</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Which elemnts are greated than 3</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Which elemnts are greater than 3</span>
 <span class="kw">which</span>(myVect &gt;<span class="st"> </span><span class="dv">3</span>) <span class="co"># can also use ==, &lt;, &lt;=, &gt;=, !=</span></code></pre>
 <pre><code>## [1] 2 3 5</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Extract them</span>

@@ -65,11 +65,11 @@ myFun()
 
 ## Multiple argument functions
 
-- Often I want both the central tendency and some measure of spred
-- But maybe I want it to be flexible enough to handle either paramtetric or nonparametric
+- Often I want both the central tendency and some measure of spread
+- But maybe I want it to be flexible enough to handle either parametric or non-parametric
 
 ```{r}
-mySummary <- function(x, parametric="both"){
+mySummary <- function(x, parametric = "both"){
   #x = a vector of type numeric or integer
   #parametric = should function return parametric ('par'), non-parametric ('npar'), or both ('both')
   if (parametric == 'both'){

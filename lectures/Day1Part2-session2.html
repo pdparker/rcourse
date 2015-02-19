@@ -98,10 +98,10 @@ myFun &lt;-<span class="st"> </span>function(<span class="dt">yourName =</span> 
 <div id="multiple-argument-functions" class="slide section level2">
 <h1>Multiple argument functions</h1>
 <ul>
-<li>Often I want both the central tendency and some measure of spred</li>
-<li>But maybe I want it to be flexible enough to handle either paramtetric or nonparametric</li>
+<li>Often I want both the central tendency and some measure of spread</li>
+<li>But maybe I want it to be flexible enough to handle either parametric or non-parametric</li>
 </ul>
-<pre class="sourceCode r"><code class="sourceCode r">mySummary &lt;-<span class="st"> </span>function(x, <span class="dt">parametric=</span><span class="st">&quot;both&quot;</span>){
+<pre class="sourceCode r"><code class="sourceCode r">mySummary &lt;-<span class="st"> </span>function(x, <span class="dt">parametric =</span> <span class="st">&quot;both&quot;</span>){
   <span class="co">#x = a vector of type numeric or integer</span>
   <span class="co">#parametric = should function return parametric (&#39;par&#39;), non-parametric (&#39;npar&#39;), or both (&#39;both&#39;)</span>
   if (parametric ==<span class="st"> &#39;both&#39;</span>){

@@ -6,4 +6,4 @@ data/
 ./lectures/css
 ./exercises/*.pdf
 ./exercises/*.html
-./lectures/.html
+./lectures/*.html

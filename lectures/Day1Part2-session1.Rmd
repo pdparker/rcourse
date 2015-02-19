@@ -70,7 +70,7 @@ boys <- subset(pisaPsych, subset = gender == 2)
 - lookup the lapply and sapply commands. Can you get summary statistics for each school?
 
 ## Merge
-There are three main merging comands in r:
+There are three main merging commands in r:
 
 - rbind or rbind.data.frame for stacking data (rbind.fill in the plyr package for unbalanced data)
 - cbind or cbind.data.frame for putting columns together
@@ -98,6 +98,6 @@ schoolAvg <- aggregate(pisaAllData$GPA, by = list(pisaAllData$SCHOOLID.x), mean,
 names(schoolAvg) <- c("SCHOOLID.x", "avg.reason")
 pisaAllData <- merge(pisaAllData, schoolAvg, by = "SCHOOLID.x")
 ```
-- How might you aggregate multple variables at a time
+- How might you aggregate multiple variables at a time
 - How could we aggregate by both school.id and gender
 

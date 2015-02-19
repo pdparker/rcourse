@@ -35,7 +35,7 @@ Some things are just easier in R:
 
 - Say goodbye to reverse scored items
 - Dummy coding
-- Multilevel modeling
+- Multilevel modelling
 - glm
 - SEM
 
@@ -128,8 +128,8 @@ Rstudio now covers:
   
 Lets look at Rstudio now
   
-## Repoduciable Research
-Rs greatest strength is reproduciblity. To leverage this:
+## Reproducible Research
+Rs greatest strength is reproducibility. To leverage this:
 
 - Don't be lazy
 - Comment comment comment
@@ -140,7 +140,7 @@ Rs greatest strength is reproduciblity. To leverage this:
 #This is a comment. Have lots of them in your script.
 ```
 
-## Repoduciable Research
+## Reproducible Research
 - Never use point and click menus (only time saving the FIRST time!!)
 - Have a quarantined data file. OR just use SQL and only give collaborators read permission 
 - Only create new data files if you have to!

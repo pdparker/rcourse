@@ -26,9 +26,9 @@ head(iris)
 - Maybe we want to create a toy dataset to play with
 
 ## Basics of simulation
-- Bias = The expeted value is not the population value
+- Bias = The expected value is not the population value
 - Consistency = How often is the observed value equal to the expected value
-- Efficency = How tighly packed are repeated observations
+- Efficiency = How tightly packed are repeated observations
 
 ## Simulation - Bias
 Population has a $\mu = 0$ and $\sigma = 1$
@@ -61,7 +61,7 @@ sd(replicate(100, mean(rnorm(10000))))
 A regression equation is:
 $Y = \alpha + \beta_{1} X + \epsilon$
 
-- Y is a continous response variable
+- Y is a continuous response variable
 - alpha is mean value conditioned on the other predictors
 - beta is weight applied to the predictor X
 - epsilon is residual variance distributed as $N \sim (0,\sigma)$
@@ -106,7 +106,7 @@ In R:
 Help files have the following structure:
 
 - Usage: function(argument = 1, argumentYouSupply, ...)
-- Arguments: Explinations of what the arguments in useage are for and do
+- Arguments: Explanations of what the arguments in useage are for and do
 - Sometimes there is a list of what the function returns (useful!)
 - Examples of how to use the function (USE THESE!!!)
 
@@ -119,7 +119,7 @@ fortune("Brain surgery")
 
 ## Outside of R you need to ask good questions
 - Do your homework first and debug  - also read the error message you are getting!
-- Reduced your problem to the simplist form that still returns an error (usually isolates the problem)
+- Reduced your problem to the simplest form that still returns an error (usually isolates the problem)
 - Google
 - Use meaningful titles (I see 5 to 10 "Please Help" titled threads a day!)
 - Be specific, be direct, explain in full, re-read to check that the question would make sense to someone other than you
