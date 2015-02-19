@@ -3,7 +3,7 @@ data/
 *.dat
 *.css
 *.pdf
-./lectures/css/*
+./lectures/css
 ./exercises/*.pdf
 ./exercises/*.html
 ./lectures/.html
