@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Philip Parker" />
+  <title>Day 1 Part 2 - Playing with Data</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Day 1 Part 2 - Playing with Data</h1>
+  <p class="author">
+Philip Parker
+  </p>
+  <p class="date">6 February 2015</p>
+</div>
+<div id="basic-descriptives" class="slide section level2">
+<h1>Basic Descriptives</h1>
+<ul>
+<li>For the rest of the day we will work with two subsamples of the PISA2003 data</li>
+<li>Lets read in the data first</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;~/Dropbox/Rcourse/data/&quot;</span>)
+<span class="kw">library</span>(foreign)
+pisaPsych &lt;-<span class="st"> </span><span class="kw">read.spss</span>(<span class="st">&quot;PISA2003.sav&quot;</span>, <span class="dt">to.data.frame=</span><span class="ot">TRUE</span>, <span class="dt">use.value.labels =</span> <span class="ot">FALSE</span>)
+pisaAch &lt;-<span class="st"> </span><span class="kw">read.spss</span>(<span class="st">&quot;PISA2003-Achievement.sav&quot;</span>, <span class="dt">to.data.frame=</span><span class="ot">TRUE</span>, <span class="dt">use.value.labels =</span> <span class="ot">FALSE</span>)
+<span class="kw">names</span>(pisaPsych)
+<span class="kw">str</span>(pisaPsych)</code></pre>
+</div>
+<div id="basic-descriptives---single-variable" class="slide section level2">
+<h1>Basic Descriptives - Single Variable</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># This will strangely return NA</span>
+<span class="kw">mean</span>(pisaPsych$HISEI)</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Default action for missing in R is to fail. Need to tell it don&#39;t do that</span>
+<span class="kw">mean</span>(pisaPsych$HISEI, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre>
+<pre><code>## [1] 52.57619</code></pre>
+<ul>
+<li>Try median, range, min, max, table</li>
+<li>Read the help menu on quantile and return ONLY the 2.5 and 97.5% quantiles</li>
+</ul>
+</div>
+<div id="basic-descriptives---multiple-variables" class="slide section level2">
+<h1>Basic Descriptives - Multiple Variables</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(pisaPsych)
+<span class="co"># A better set of summary data is in psych package</span>
+<span class="kw">library</span>(psych)
+<span class="kw">describe</span>(pisaPsych)</code></pre>
+<ul>
+<li>Read documentation on describeBy and get statistics for the FIRST 4 variables by gender</li>
+</ul>
+</div>
+<div id="apply-family" class="slide section level2">
+<h1>Apply family</h1>
+<ul>
+<li>The apply family is R's compact version of for loops.</li>
+<li>We will look at apply and tapply</li>
+<li>Lets get the mean values for the achievement data</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(pisaAch[,<span class="kw">c</span>(<span class="st">&quot;PV1MATH&quot;</span>, <span class="st">&quot;PV1READ&quot;</span>, <span class="st">&quot;PV1SCIE&quot;</span>, <span class="st">&quot;PV1PROB&quot;</span>)], <span class="dv">2</span>, mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre>
+<pre><code>##  PV1MATH  PV1READ  PV1SCIE  PV1PROB 
+## 523.2091 529.9949 526.0116 529.8376</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tapply</span>(pisaAch$PV1PROB, pisaAch$SCHOOLID, mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre>
+<pre><code>## 00001           00002           00003           00004           
+##        491.9057        535.2215        556.6979        508.5993 
+## 00005           00006           00007           00008           
+##        530.8096        531.2202        442.1496        622.5143 
+## 00009           00010           00011           00012           
+##        611.5033        521.0110        527.0367        445.9511 
+## 00013           00014           00015           00016           
+##        513.0117        539.5036        512.0016        579.1769 
+## 00017           00018           00019           00020           
+##        524.0826        516.6261        579.2674        546.1009 
+## 00021           00022           00023           00024           
+##        514.9198        476.6740        610.8757        525.5136 
+## 00025           00026           00027           00028           
+##        551.1757        589.0355        447.8045        490.6239 
+## 00029           00030           
+##        455.6754        525.0950</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Average achievement across the four domains NOTE use of 1 instead of 2</span>
+pisaAch$GPA &lt;-<span class="st"> </span><span class="kw">apply</span>(pisaAch[,<span class="kw">c</span>(<span class="st">&quot;PV1MATH&quot;</span>, <span class="st">&quot;PV1READ&quot;</span>, <span class="st">&quot;PV1SCIE&quot;</span>, <span class="st">&quot;PV1PROB&quot;</span>)],<span class="dv">1</span>,mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre>
+<ul>
+<li>Create scale scores for the other variables</li>
+<li>Use functions learnt above to explore the new variables</li>
+<li>Plot the new variables: Try plot, hist, boxplot</li>
+<li>We will look at better ways of creating scale scores next time</li>
+</ul>
+</div>
+<div id="subsetting-and-splitting" class="slide section level2">
+<h1>Subsetting and splitting</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Splitting data</span>
+schoolAbility &lt;-<span class="st"> </span><span class="kw">split</span>(pisaAch, pisaAch$SCHOOLID)
+<span class="co"># Subsetting data</span>
+girls &lt;-<span class="st"> </span><span class="kw">subset</span>(pisaPsych, <span class="dt">subset =</span> gender ==<span class="st"> </span><span class="dv">1</span>)
+boys &lt;-<span class="st"> </span><span class="kw">subset</span>(pisaPsych, <span class="dt">subset =</span> gender ==<span class="st"> </span><span class="dv">2</span>)</code></pre>
+<ul>
+<li>lookup the lapply and sapply commands. Can you get summary statistics for each school?</li>
+</ul>
+</div>
+<div id="merge" class="slide section level2">
+<h1>Merge</h1>
+<p>There are three main merging comands in r:</p>
+<ul>
+<li>rbind or rbind.data.frame for stacking data (rbind.fill in the plyr package for unbalanced data)</li>
+<li>cbind or cbind.data.frame for putting columns together</li>
+<li>merge</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Stack data</span>
+pisaPsych &lt;-<span class="st"> </span><span class="kw">rbind.data.frame</span>(girls,boys)
+<span class="co">#Merge by ID</span>
+pisaAllData &lt;-<span class="st"> </span><span class="kw">merge</span>(pisaPsych, pisaAch, <span class="dt">by =</span> <span class="st">&quot;STIDSTD&quot;</span>)
+<span class="co">#check</span>
+<span class="kw">sprintf</span>(<span class="st">&quot;The number of CASE in pisaPsych is %d, in pisaAch is %d, and in the merged data is %d/n&quot;</span>, 
+        <span class="kw">nrow</span>(pisaPsych),<span class="kw">nrow</span>(pisaAch), <span class="kw">nrow</span>(pisaAllData)
+        )</code></pre>
+<pre><code>## [1] &quot;The number of CASE in pisaPsych is 1180, in pisaAch is 1180, and in the merged data is 1180/n&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sprintf</span>(<span class="st">&quot;The number of VARIABLES in pisaPsych is %d, in pisaAch is %d, and in the merged data is %d&quot;</span>, 
+        <span class="kw">length</span>(pisaPsych),<span class="kw">length</span>(pisaAch), <span class="kw">length</span>(pisaAllData)
+        )</code></pre>
+<pre><code>## [1] &quot;The number of VARIABLES in pisaPsych is 41, in pisaAch is 24, and in the merged data is 64&quot;</code></pre>
+</div>
+<div id="aggregation" class="slide section level2">
+<h1>Aggregation</h1>
+<ul>
+<li>Ok so no IPPE presentation is complete without reference to the BFLP</li>
+<li>So how would we add a school average reason score to our data</li>
+<li>We need both aggregate, name, and merge functions</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">schoolAvg &lt;-<span class="st"> </span><span class="kw">aggregate</span>(pisaAllData$GPA, <span class="dt">by =</span> <span class="kw">list</span>(pisaAllData$SCHOOLID.x), mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)
+<span class="kw">names</span>(schoolAvg) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SCHOOLID.x&quot;</span>, <span class="st">&quot;avg.reason&quot;</span>)
+pisaAllData &lt;-<span class="st"> </span><span class="kw">merge</span>(pisaAllData, schoolAvg, <span class="dt">by =</span> <span class="st">&quot;SCHOOLID.x&quot;</span>)</code></pre>
+<ul>
+<li>How might you aggregate multple variables at a time</li>
+<li>How could we aggregate by both school.id and gender</li>
+</ul>
+</div>
+</body>
+</html>

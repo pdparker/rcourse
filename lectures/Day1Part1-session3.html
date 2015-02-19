@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Philip Parker" />
+  <title>Day 1 Part 1 - Data</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Day 1 Part 1 - Data</h1>
+  <p class="author">
+Philip Parker
+  </p>
+  <p class="date">6 February 2015</p>
+</div>
+<div id="example-data" class="slide section level2">
+<h1>Example data</h1>
+<ul>
+<li>R has many example data sets so does most packages. To see a list of them</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>()</code></pre>
+<ul>
+<li>To load an example data set</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(iris)
+<span class="kw">head</span>(iris)</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+</div>
+<div id="toy-data" class="slide section level2">
+<h1>Toy data</h1>
+<ul>
+<li>R is great for simulation</li>
+<li>Maybe we want to create a toy dataset to play with</li>
+</ul>
+</div>
+<div id="basics-of-simulation" class="slide section level2">
+<h1>Basics of simulation</h1>
+<ul>
+<li>Bias = The expeted value is not the population value</li>
+<li>Consistency = How often is the observed value equal to the expected value</li>
+<li>Efficency = How tighly packed are repeated observations</li>
+</ul>
+</div>
+<div id="simulation---bias" class="slide section level2">
+<h1>Simulation - Bias</h1>
+<p>Population has a <span class="math"><em>μ</em> = 0</span> and <span class="math"><em>σ</em> = 1</span></p>
+<pre class="sourceCode r"><code class="sourceCode r">myFunction &lt;-<span class="st"> </span>function(x) <span class="kw">sprintf</span>(<span class="st">&quot;The mean is %.2f and the SD is %.2f&quot;</span>, <span class="kw">mean</span>(x), <span class="kw">sd</span>(x))
+<span class="co">#bias</span>
+<span class="kw">myFunction</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rchisq</span>(<span class="dv">100</span>,<span class="dv">2</span>))))</code></pre>
+<pre><code>## [1] &quot;The mean is 1.96 and the SD is 0.19&quot;</code></pre>
+</div>
+<div id="consistency" class="slide section level2">
+<h1>Consistency</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#consistency</span>
+<span class="co"># n = 1</span>
+<span class="kw">sum</span>(<span class="kw">abs</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">1</span>)))) &lt;<span class="st"> </span>.<span class="dv">5</span>)</code></pre>
+<pre><code>## [1] 39</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10 </span>
+<span class="kw">sum</span>(<span class="kw">abs</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>)))) &lt;<span class="st"> </span>.<span class="dv">5</span>)</code></pre>
+<pre><code>## [1] 90</code></pre>
+</div>
+<div id="efficency" class="slide section level2">
+<h1>Efficency</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Efficency</span>
+<span class="co">#n = 1</span>
+<span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">1</span>))))</code></pre>
+<pre><code>## [1] 1.015472</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10</span>
+<span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>))))</code></pre>
+<pre><code>## [1] 0.3203493</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10000</span>
+<span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10000</span>))))</code></pre>
+<pre><code>## [1] 0.01086238</code></pre>
+</div>
+<div id="regression1" class="slide section level2">
+<h1>Regression1</h1>
+<p>A regression equation is: <span class="math"><em>Y</em> = <em>α</em> + <em>β</em><sub>1</sub><em>X</em> + <em>ϵ</em></span></p>
+<ul>
+<li>Y is a continous response variable</li>
+<li>alpha is mean value conditioned on the other predictors</li>
+<li>beta is weight applied to the predictor X</li>
+<li>epsilon is residual variance distributed as <span class="math"><em>N</em> ∼ (0, <em>σ</em>)</span></li>
+</ul>
+</div>
+<div id="regression2" class="slide section level2">
+<h1>Regression2</h1>
+<pre class="sourceCode r"><code class="sourceCode r">n &lt;-<span class="st"> </span><span class="dv">100</span>
+x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, <span class="dt">mean =</span> <span class="dv">10</span>, <span class="dt">sd =</span> <span class="dv">5</span>)
+y.hat &lt;-<span class="st"> </span><span class="dv">2</span> +<span class="st"> </span><span class="fl">1.2</span>*x
+y &lt;-<span class="st"> </span>y.hat +<span class="st"> </span><span class="kw">rnorm</span>(n, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">3</span>)
+myD &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y.observed =</span> y)
+model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y ~<span class="st"> </span>x, <span class="dt">data =</span> myD)
+<span class="kw">summary</span>(model1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x, data = myD)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.8066 -1.7936 -0.0743  1.9041  7.7908 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  2.33997    0.60819   3.847 0.000213 ***
+## x            1.10818    0.05786  19.152  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.843 on 98 degrees of freedom
+## Multiple R-squared:  0.7892, Adjusted R-squared:  0.787 
+## F-statistic: 366.8 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="regression3" class="slide section level2">
+<h1>Regression3</h1>
+<p>I ran this with n = 10,100,1000, 10 000 the results where:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">n</th>
+<th align="left">alpha</th>
+<th align="left">beta</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">simulated</td>
+<td align="left">2</td>
+<td align="left">1.2</td>
+</tr>
+<tr class="even">
+<td align="left">10</td>
+<td align="left">.322</td>
+<td align="left">1.37</td>
+</tr>
+<tr class="odd">
+<td align="left">100</td>
+<td align="left">2.43</td>
+<td align="left">1.16</td>
+</tr>
+<tr class="even">
+<td align="left">1000</td>
+<td align="left">1.85</td>
+<td align="left">1.22</td>
+</tr>
+<tr class="odd">
+<td align="left">10,000</td>
+<td align="left">2.07</td>
+<td align="left">1.19</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="simulation-from-correlation-or-covariance-matrix" class="slide section level2">
+<h1>Simulation from Correlation or Covariance matrix</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MASS)
+Sigma &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,.<span class="dv">8082</span>,.<span class="dv">8082</span>,<span class="dv">1</span>),<span class="dv">2</span>,<span class="dv">2</span>)
+Sigma</code></pre>
+<pre><code>##        [,1]   [,2]
+## [1,] 1.0000 0.8082
+## [2,] 0.8082 1.0000</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">myD &lt;-<span class="st"> </span><span class="kw">mvrnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">2</span>), Sigma)
+<span class="kw">cor</span>(myD)</code></pre>
+<pre><code>##           [,1]      [,2]
+## [1,] 1.0000000 0.8228041
+## [2,] 0.8228041 1.0000000</code></pre>
+</div>
+<div id="getting-help" class="slide section level2">
+<h1>Getting help</h1>
+<p>In R:</p>
+<ul>
+<li>Error messages - READ THEM!</li>
+<li>?function</li>
+</ul>
+<p>Help files have the following structure:</p>
+<ul>
+<li>Usage: function(argument = 1, argumentYouSupply, ...)</li>
+<li>Arguments: Explinations of what the arguments in useage are for and do</li>
+<li>Sometimes there is a list of what the function returns (useful!)</li>
+<li>Examples of how to use the function (USE THESE!!!)</li>
+</ul>
+</div>
+<div id="outside-of-r-you-need-to-ask-good-questions" class="slide section level2">
+<h1>Outside of R you need to ask good questions</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(fortunes)
+<span class="kw">fortune</span>(<span class="st">&quot;Brain surgery&quot;</span>)</code></pre>
+<pre><code>## 
+## I wish to perform brain surgery this afternoon at 4pm and don&#39;t know where
+## to start. My background is the history of great statistician sports
+## legends but I am willing to learn. I know there are courses and numerous
+## books on brain surgery but I don&#39;t have the time for those. Please direct
+## me to the appropriate HowTos, and be on standby for solving any problem I
+## may encounter while in the operating room. Some of you might ask for
+## specifics of the case, but that would require my following the posting
+## guide and spending even more time than I am already taking to write this
+## note.
+##    -- I. Ben Fooled (aka Frank Harrell)
+##       R-help (April 1, 2005)</code></pre>
+</div>
+<div id="outside-of-r-you-need-to-ask-good-questions-1" class="slide section level2">
+<h1>Outside of R you need to ask good questions</h1>
+<ul>
+<li>Do your homework first and debug - also read the error message you are getting!</li>
+<li>Reduced your problem to the simplist form that still returns an error (usually isolates the problem)</li>
+<li>Google</li>
+<li>Use meaningful titles (I see 5 to 10 &quot;Please Help&quot; titled threads a day!)</li>
+<li>Be specific, be direct, explain in full, re-read to check that the question would make sense to someone other than you</li>
+<li>Describe what you are trying to do not the outcome</li>
+<li>Give example data and code tried (this is what simulation and toy data are for)</li>
+<li>Don't just give a function but give the package it came from</li>
+</ul>
+</div>
+</body>
+</html>

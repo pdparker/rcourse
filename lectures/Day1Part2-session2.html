@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Philip Parker" />
+  <title>Day 1 Part 2 - Functions</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Day 1 Part 2 - Functions</h1>
+  <p class="author">
+Philip Parker
+  </p>
+  <p class="date">6 February 2015</p>
+</div>
+<div id="writing-your-own-functions" class="slide section level2">
+<h1>Writing your own functions</h1>
+<ul>
+<li>The general rule in R is if you find yourself doing something repeatedly make it a variable or a function</li>
+<li>One of the major benefits of R is the ability to write your own functions</li>
+<li>It is actually pretty easy to do. Here is a 'Hello World' function</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">myFun &lt;-<span class="st"> </span>function(){<span class="kw">print</span>(<span class="st">&quot;Hello World!!&quot;</span>)} 
+<span class="kw">myFun</span>()</code></pre>
+<pre><code>## [1] &quot;Hello World!!&quot;</code></pre>
+</div>
+<div id="writing-your-own-functions-the-details" class="slide section level2">
+<h1>Writing your own functions: The details</h1>
+<p>The recipe for a function is as follows:</p>
+<ul>
+<li>An object you want to assign your function to 'myFun &lt;-'</li>
+<li>The command function followed by arguments you want to supply 'function()'</li>
+<li>The code you want the function to run and what you want it to return in curly brackets</li>
+<li>Lets extend the function above to make it more personal</li>
+</ul>
+</div>
+<div id="writing-your-own-functions-the-details-1" class="slide section level2">
+<h1>Writing your own functions: The details</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#function with 1 argument</span>
+myFun &lt;-<span class="st"> </span>function(yourName){
+  temp &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;Hello&quot;</span>, yourName, <span class="st">&quot;!!!&quot;</span> )
+  <span class="kw">cat</span>(temp)
+  }
+
+<span class="kw">myFun</span>(<span class="st">&quot;Phil&quot;</span>)</code></pre>
+<pre><code>## Hello Phil !!!</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># function with 1 argument with a default setting</span>
+myFun &lt;-<span class="st"> </span>function(<span class="dt">yourName =</span> <span class="st">&quot;Phil&quot;</span>){
+  temp &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;Hello&quot;</span>, yourName, <span class="st">&quot;!!!&quot;</span> )
+  <span class="kw">cat</span>(temp)
+  }
+
+<span class="kw">myFun</span>()</code></pre>
+<pre><code>## Hello Phil !!!</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">myFun</span>(<span class="st">&quot;Bob&quot;</span>)</code></pre>
+<pre><code>## Hello Bob !!!</code></pre>
+</div>
+<div id="make-it-crazy" class="slide section level2">
+<h1>Make it crazy</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#You can make it as crazy as you want</span>
+myFun &lt;-<span class="st"> </span>function(<span class="dt">yourName =</span> <span class="st">&quot;Phil&quot;</span>){
+  temp &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;Hello&quot;</span>, yourName, <span class="dt">sep =</span> <span class="st">&quot;+&quot;</span>)
+  url &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;http://tts-api.com/tts.mp3?q=&quot;</span>, temp, <span class="st">&quot;.&quot;</span>)
+  <span class="kw">browseURL</span>(url)
+  }
+
+<span class="kw">myFun</span>()
+ <span class="kw">myFun</span>(<span class="st">&quot;Bob&quot;</span>)</code></pre>
+</div>
+<div id="multiple-argument-functions" class="slide section level2">
+<h1>Multiple argument functions</h1>
+<ul>
+<li>Often I want both the central tendency and some measure of spred</li>
+<li>But maybe I want it to be flexible enough to handle either paramtetric or nonparametric</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">mySummary &lt;-<span class="st"> </span>function(x, <span class="dt">parametric=</span><span class="st">&quot;both&quot;</span>){
+  <span class="co">#x = a vector of type numeric or integer</span>
+  <span class="co">#parametric = should function return parametric (&#39;par&#39;), non-parametric (&#39;npar&#39;), or both (&#39;both&#39;)</span>
+  if (parametric ==<span class="st"> &#39;both&#39;</span>){
+    temp =<span class="st"> </span><span class="kw">c</span>(<span class="dt">Mean =</span> <span class="kw">mean</span>(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), <span class="dt">SD =</span> <span class="kw">sd</span>(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), 
+             <span class="dt">Median =</span> <span class="kw">median</span>(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), <span class="dt">MAD =</span> <span class="kw">mad</span>(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) )
+  }else if (parametric ==<span class="st"> &#39;par&#39;</span>){
+    temp =<span class="st"> </span><span class="kw">c</span>(<span class="dt">Mean =</span> <span class="kw">mean</span>(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), <span class="dt">SD =</span> <span class="kw">sd</span>(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) )
+  }else {
+    temp =<span class="st"> </span><span class="kw">c</span>(<span class="dt">Median =</span> <span class="kw">median</span>(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), <span class="dt">MAD =</span> <span class="kw">mad</span>(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) )
+  }
+  temp
+}
+
+<span class="kw">mySummary</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>))</code></pre>
+<pre><code>##     Mean       SD   Median      MAD 
+## 4.000000 2.160247 4.000000 2.965200</code></pre>
+</div>
+</body>
+</html>
