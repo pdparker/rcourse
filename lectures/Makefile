@@ -1,11 +1,19 @@
-.SUFFIXES: .html .Rmd
+# Transform .Rmd files to slidy files
 
-HTMLS= Day1Part1-Introduction.html Day1Part1-session2.html Day1Part1-session3.html Day1Part2-session1.html
+all: Day1Part1-Introduction.md Day1Part1-Introduction.html \
+Day1Part1-session2.md Day1Part1-session2.html
 
-all: $(HTMLS)
+Day1Part1-Introduction.md: Day1Part1-Introduction.Rmd
+	/usr/bin/Rscript -e "knitr::knit('Day1Part1-Introduction.Rmd', 'Day1Part1-Introduction.md')"
 
-$(HTMLS):
+Day1Part1-Introduction.html: Day1Part1-Introduction.md
+	pandoc -s -t slidy Day1Part1-Introduction.md -o Day1Part1-Introduction.html
 
-.html:
-	/usr/bin/Rscript -e "knitr::knit2html('$*.Rmd')"
+Day1Part1-session2.md: Day1Part1-session2.Rmd
+	/usr/bin/Rscript -e "knitr::knit('Day1Part1-session2.Rmd', 'Day1Part1-session2.md')"
 
+Day1Part1-session2.html: Day1Part1-session2.md
+	pandoc -s -t slidy Day1Part1-session2.md -o Day1Part1-session2.html
+
+clean:
+	rm -rf *.md figure *.inp

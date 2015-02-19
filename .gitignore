@@ -2,5 +2,8 @@ data/
 *.sav
 *.dat
 *.css
-*pdf
-./lectures/css/
+*.pdf
+./lectures/css/*
+./exercises/*.pdf
+./exercises/*.html
+./lectures/.html

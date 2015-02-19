@@ -37,6 +37,8 @@ Questions
 5. ADVANCED: If you created the 5 GPA variables above, aggregate all five. Look at the package mitools and the imputationlist function and think about how you could package your data for analysis (you should have 5 datasets each with 1 of the GPA variables). Look at some other functions in the mitools package, how could you run regression with this sort of data?
 
 ```{r}
+## template file for exercise ex.3.html ##
+
 ### Question Set 1 ###
 # read in the PISA achievement data
   # see ?read.spss in the foreign package

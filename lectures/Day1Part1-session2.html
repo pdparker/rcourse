@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Philip Parker" />
+  <title>Day 1 Part 1 - Data</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Day 1 Part 1 - Data</h1>
+  <p class="author">
+Philip Parker
+  </p>
+  <p class="date">6 February 2015</p>
+</div>
+<div id="r-basics-the-boring-bits---introduction-to-object-orientated-programming" class="slide section level2">
+<h1>R basics (the boring bits) - Introduction to Object Orientated Programming</h1>
+<p>This is NOT a technical introduction but a pragmatic introduction.</p>
+<p>Everything in R is:</p>
+<ul>
+<li>An element of a given type</li>
+<li>An object (think container)</li>
+<li>A function</li>
+</ul>
+</div>
+<div id="r-basics-the-boring-bits---elements" class="slide section level2">
+<h1>R basics (the boring bits) - Elements</h1>
+<p>'Types' data can take include:</p>
+<ul>
+<li>Integer: 1, 2, 3</li>
+<li>Numeric: 1.0, .2, 3.6</li>
+<li>Logical: TRUE, FALSE</li>
+<li>Character: &quot;one&quot;, &quot;two&quot;, &quot;three&quot;</li>
+<li>Missing or otherwise indisposed: NA, NULL, NaN</li>
+</ul>
+</div>
+<div id="objects" class="slide section level2">
+<h1>Objects</h1>
+<p>Objects in R are just containers that you put elements into for storage.</p>
+<p>To put something in a container we use the assignment symbols:</p>
+<ul>
+<li>object.name &lt;- stuff you want put in the container</li>
+</ul>
+<p>Containers come in the form of:</p>
+<ul>
+<li>Vectors: 1 or more elements of the same type e.g. 1,2,3</li>
+<li>Factors: character vector with 'special' properties</li>
+<li>List: 1 or more objects of any type 1,&quot;A&quot;, TRUE</li>
+<li>Matrix: A two-dimensional vector with attributes [rows:columns]</li>
+<li>Dataframe: A two-dimensional list with attributes [rows:columns]</li>
+<li>Array: an N dimensional vector</li>
+</ul>
+</div>
+<div id="functions" class="slide section level2">
+<h1>Functions</h1>
+<p>A function takes input, transforms it, and returns output. Examples include:</p>
+<ul>
+<li>mean, sd, range, min, max</li>
+<li>lm, t.test, aov, anova, sem, cfa</li>
+<li>summary, plot, str, names, print, cat</li>
+</ul>
+</div>
+<div id="my-first-r-program---assignment" class="slide section level2 smaller">
+<h1>My first R program - Assignment</h1>
+<p>We are going to take a vector of characters assign to an object and apply a function to it</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Object &lt;- vector of character elements</span>
+myFirst &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Hello&quot;</span>,<span class="st">&quot;World!&quot;</span>)
+<span class="co">#Function cat returning the elements in a nice format</span>
+<span class="kw">cat</span>(myFirst, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)</code></pre>
+<pre><code>## Hello World!</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lets assign the output of a function to an object</span>
+mySecond &lt;-<span class="st"> </span><span class="kw">paste</span>(myFirst, <span class="dt">collapse =</span> <span class="st">&quot; &quot;</span>)
+<span class="co"># We can now apply functions to this and functions within functions. </span>
+<span class="co"># Lets shout out excitment at learning R</span>
+<span class="kw">cat</span>(<span class="kw">toupper</span>(mySecond), <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)</code></pre>
+<pre><code>## HELLO WORLD!</code></pre>
+</div>
+<div id="other-functions-to-play-with" class="slide section level2">
+<h1>Other functions to play with</h1>
+<ul>
+<li>Beginner: nchar, tolower</li>
+<li>Intermediate: strsplit, substring</li>
+<li>Advanced: gsub, plot with text</li>
+</ul>
+</div>
+<div id="vectors" class="slide section level2">
+<h1>Vectors</h1>
+<p>A vector is the simplest data type. All elements have to have the same form</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#vector - Interger</span>
+<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>, <span class="ot">NA</span>)</code></pre>
+<pre><code>## [1]  1  2  3  4 NA</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Numeric</span>
+<span class="kw">c</span>(<span class="fl">1.3</span>,<span class="fl">4.0</span>,<span class="dv">5</span>,<span class="ot">NA</span>,<span class="fl">7.5</span>, .<span class="dv">2</span>)</code></pre>
+<pre><code>## [1] 1.3 4.0 5.0  NA 7.5 0.2</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Logical</span>
+<span class="kw">c</span>(<span class="ot">NA</span>,<span class="ot">TRUE</span>,<span class="ot">FALSE</span>,<span class="ot">TRUE</span>)</code></pre>
+<pre><code>## [1]    NA  TRUE FALSE  TRUE</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Character</span>
+<span class="kw">c</span>(<span class="st">&quot;One&quot;</span>, <span class="st">&quot;Fish&quot;</span>, <span class="st">&quot;Two&quot;</span>, <span class="st">&quot;Fish&quot;</span>, <span class="ot">NA</span>)</code></pre>
+<pre><code>## [1] &quot;One&quot;  &quot;Fish&quot; &quot;Two&quot;  &quot;Fish&quot; NA</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#This will not work - will convert everything to a string</span>
+<span class="kw">c</span>(<span class="dv">1</span>,<span class="ot">TRUE</span>,<span class="st">&quot;one&quot;</span>)</code></pre>
+<pre><code>## [1] &quot;1&quot;    &quot;TRUE&quot; &quot;one&quot;</code></pre>
+</div>
+<div id="vector-indexing" class="slide section level2">
+<h1>Vector Indexing</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Example vector</span>
+myVect &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.3</span>,<span class="fl">4.0</span>,<span class="dv">5</span>,<span class="ot">NA</span>,<span class="fl">7.5</span>, .<span class="dv">2</span>)
+<span class="co"># Extract element 3</span>
+myVect[<span class="dv">3</span>]</code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract elements 3 to 5</span>
+myVect[<span class="dv">3</span>:<span class="dv">5</span>]</code></pre>
+<pre><code>## [1] 5.0  NA 7.5</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract non-consecutive elements</span>
+myVect[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">6</span>)]</code></pre>
+<pre><code>## [1] 1.3 5.0 0.2</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Which elemnts are greated than 3</span>
+<span class="kw">which</span>(myVect &gt;<span class="st"> </span><span class="dv">3</span>) <span class="co"># can also use ==, &lt;, &lt;=, &gt;=, !=</span></code></pre>
+<pre><code>## [1] 2 3 5</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Extract them</span>
+myVect[<span class="kw">which</span>(myVect &gt;<span class="st"> </span><span class="dv">3</span>)]</code></pre>
+<pre><code>## [1] 4.0 5.0 7.5</code></pre>
+</div>
+<div id="exercises" class="slide section level2">
+<h1>Exercises</h1>
+<ul>
+<li>Create a vector with 15 numeric elements</li>
+<li>Extract the 5th elements</li>
+<li>Extract elements greater than 5</li>
+<li>With the smallest code, extract every 2nd element (Intermediate)</li>
+<li>Extract only even numbers or only odd numbers (Advanced)</li>
+</ul>
+</div>
+<div id="functions-to-try" class="slide section level2">
+<h1>Functions to try</h1>
+<ul>
+<li>max, min, range, summary, plot, hist, sort</li>
+<li>Create a vector using the functions: sample, rep, rev</li>
+</ul>
+</div>
+<div id="factors" class="slide section level2">
+<h1>Factors</h1>
+<p>Factors are special character vectors</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Nominal</span>
+gender &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;male&quot;</span>,<span class="dv">5</span>), <span class="kw">rep</span>(<span class="st">&quot;female&quot;</span>, <span class="dv">10</span>)) 
+gender &lt;-<span class="st"> </span><span class="kw">factor</span>(gender) 
+gender</code></pre>
+<pre><code>##  [1] male   male   male   male   male   female female female female female
+## [11] female female female female female
+## Levels: female male</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Ordinal</span>
+height &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;Phil&quot;</span>,<span class="dv">5</span>), <span class="kw">rep</span>(<span class="st">&quot;Joe&quot;</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="st">&quot;Herb&quot;</span>, <span class="dv">5</span>))
+height &lt;-<span class="st"> </span><span class="kw">factor</span>(height, <span class="dt">ordered=</span><span class="ot">TRUE</span>)
+height</code></pre>
+<pre><code>##  [1] Phil Phil Phil Phil Phil Joe  Joe  Joe  Joe  Joe  Herb Herb Herb Herb
+## [15] Herb
+## Levels: Herb &lt; Joe &lt; Phil</code></pre>
+</div>
+<div id="functions-to-try-1" class="slide section level2">
+<h1>Functions to try</h1>
+<ul>
+<li>table and chisq.test</li>
+<li>relevel</li>
+</ul>
+</div>
+<div id="lists" class="slide section level2">
+<h1>Lists</h1>
+<p>A list is a collection of objects of any type or form</p>
+<pre class="sourceCode r"><code class="sourceCode r">int &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>, <span class="ot">NA</span>)
+num &lt;-<span class="st"> </span><span class="fl">3.14</span>
+log &lt;-<span class="st"> &quot;FALSE&quot;</span>
+char &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;One&quot;</span>, <span class="st">&quot;Fish&quot;</span>, <span class="st">&quot;Two&quot;</span>, <span class="st">&quot;Fish&quot;</span>, <span class="ot">NA</span>)
+
+myList &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">int=</span>int,<span class="dt">num=</span>num,<span class="dt">log=</span>log,<span class="dt">char=</span>char, <span class="dt">phrase=</span><span class="st">&quot;Hello World&quot;</span>)
+myList</code></pre>
+<pre><code>## $int
+## [1]  1  2  3  4 NA
+## 
+## $num
+## [1] 3.14
+## 
+## $log
+## [1] &quot;FALSE&quot;
+## 
+## $char
+## [1] &quot;One&quot;  &quot;Fish&quot; &quot;Two&quot;  &quot;Fish&quot; NA    
+## 
+## $phrase
+## [1] &quot;Hello World&quot;</code></pre>
+</div>
+<div id="indexing-lists" class="slide section level2">
+<h1>Indexing lists</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#By name</span>
+myList[[<span class="st">&quot;char&quot;</span>]]</code></pre>
+<pre><code>## [1] &quot;One&quot;  &quot;Fish&quot; &quot;Two&quot;  &quot;Fish&quot; NA</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># By number</span>
+myList[[<span class="dv">4</span>]]</code></pre>
+<pre><code>## [1] &quot;One&quot;  &quot;Fish&quot; &quot;Two&quot;  &quot;Fish&quot; NA</code></pre>
+</div>
+<div id="matrix" class="slide section level2">
+<h1>Matrix</h1>
+<p>A matrix is a two dimensional vector (rows, columns) of the same data form</p>
+<pre class="sourceCode r"><code class="sourceCode r">myMatrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>:<span class="dv">100</span>, <span class="dt">nrow=</span><span class="dv">10</span>, <span class="dt">ncol=</span><span class="dv">10</span>)
+myMatrix</code></pre>
+<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+##  [1,]    1   11   21   31   41   51   61   71   81    91
+##  [2,]    2   12   22   32   42   52   62   72   82    92
+##  [3,]    3   13   23   33   43   53   63   73   83    93
+##  [4,]    4   14   24   34   44   54   64   74   84    94
+##  [5,]    5   15   25   35   45   55   65   75   85    95
+##  [6,]    6   16   26   36   46   56   66   76   86    96
+##  [7,]    7   17   27   37   47   57   67   77   87    97
+##  [8,]    8   18   28   38   48   58   68   78   88    98
+##  [9,]    9   19   29   39   49   59   69   79   89    99
+## [10,]   10   20   30   40   50   60   70   80   90   100</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#not So helpful</span>
+<span class="kw">colnames</span>(myMatrix) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;C_&quot;</span>,letters[<span class="dv">1</span>:<span class="dv">10</span>])
+<span class="kw">row.names</span>(myMatrix)&lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;R_&quot;</span>, letters[<span class="dv">1</span>:<span class="dv">10</span>])
+myMatrix</code></pre>
+<pre><code>##     C_a C_b C_c C_d C_e C_f C_g C_h C_i C_j
+## R_a   1  11  21  31  41  51  61  71  81  91
+## R_b   2  12  22  32  42  52  62  72  82  92
+## R_c   3  13  23  33  43  53  63  73  83  93
+## R_d   4  14  24  34  44  54  64  74  84  94
+## R_e   5  15  25  35  45  55  65  75  85  95
+## R_f   6  16  26  36  46  56  66  76  86  96
+## R_g   7  17  27  37  47  57  67  77  87  97
+## R_h   8  18  28  38  48  58  68  78  88  98
+## R_i   9  19  29  39  49  59  69  79  89  99
+## R_j  10  20  30  40  50  60  70  80  90 100</code></pre>
+</div>
+<div id="indexing-matrices" class="slide section level2">
+<h1>Indexing Matrices</h1>
+<ul>
+<li>Has the form [row,column]</li>
+<li>Leaving one side empty is short hand for &quot;give me all of them&quot;&quot;</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># All columns and row 3</span>
+myMatrix[<span class="dv">3</span>,]</code></pre>
+<pre><code>## C_a C_b C_c C_d C_e C_f C_g C_h C_i C_j 
+##   3  13  23  33  43  53  63  73  83  93</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># All rows and column 4</span>
+myMatrix[,<span class="dv">4</span>]</code></pre>
+<pre><code>## R_a R_b R_c R_d R_e R_f R_g R_h R_i R_j 
+##  31  32  33  34  35  36  37  38  39  40</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Cell row 3 column 3</span>
+myMatrix[<span class="dv">3</span>,<span class="dv">3</span>]</code></pre>
+<pre><code>## [1] 23</code></pre>
+<ul>
+<li>Try diag, upper.tri, lower.tri</li>
+<li>As an example change the upper triangular elements to 0</li>
+</ul>
+</div>
+<div id="data-frame" class="slide section level2">
+<h1>Data Frame</h1>
+<p>A data.frame is a structured list (rows, columns) of any data form. This is the ONLY format that SPSS uses.</p>
+<pre class="sourceCode r"><code class="sourceCode r">myData &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">var1 =</span> <span class="dv">1</span>:<span class="dv">10</span>, <span class="dt">var2 =</span> letters[<span class="dv">1</span>:<span class="dv">10</span>], <span class="dt">var3=</span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>,<span class="ot">FALSE</span>), <span class="dv">5</span>))
+<span class="kw">head</span>(myData)</code></pre>
+<pre><code>##   var1 var2  var3
+## 1    1    a  TRUE
+## 2    2    b FALSE
+## 3    3    c  TRUE
+## 4    4    d FALSE
+## 5    5    e  TRUE
+## 6    6    f FALSE</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(myData)</code></pre>
+<pre><code>## [1] &quot;var1&quot; &quot;var2&quot; &quot;var3&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(myData)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    10 obs. of  3 variables:
+##  $ var1: int  1 2 3 4 5 6 7 8 9 10
+##  $ var2: Factor w/ 10 levels &quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,..: 1 2 3 4 5 6 7 8 9 10
+##  $ var3: logi  TRUE FALSE TRUE FALSE TRUE FALSE ...</code></pre>
+</div>
+<div id="indexing-data-frames" class="slide section level2">
+<h1>Indexing Data Frames</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#By name</span>
+myData$var1</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Using matrix indexing</span>
+myData[<span class="dv">1</span>,<span class="dv">1</span>:<span class="dv">2</span>]</code></pre>
+<pre><code>##   var1 var2
+## 1    1    a</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># By list indexing</span>
+myData[[<span class="st">&quot;var1&quot;</span>]]</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+<div id="data" class="slide section level2">
+<h1>Data</h1>
+<p>Surprisingly most people give up on R in the first few minutes because they cannot get there data into R. Here are the main things you need:</p>
+<ul>
+<li>Know the path to where your data is located</li>
+<li>Know the working directory R is using</li>
+<li>Know the format that your data is in</li>
+<li>Know how to check your data is there</li>
+<li>Don't use the point and click features!</li>
+</ul>
+</div>
+<div id="data---where-is-it" class="slide section level2">
+<h1>Data - where is it</h1>
+<ul>
+<li>R is based on unix OS so using &quot;/&quot; to separate folders rather than &quot;&quot;.</li>
+<li>Your default home location will be represented by a &quot;~&quot; sign<br /></li>
+<li>Lets see if a file exists (use the 'tab' key for code completion)</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">file.exists</span>(<span class="st">&quot;~/Dropbox/Rcourse/data/PISA2003.sav&quot;</span>)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<ul>
+<li>Getting and setting Rs working directory</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre>
+<pre><code>## [1] &quot;/Users/phparker/Dropbox/Rcourse/lectures&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;~/Dropbox/Rcourse/data&quot;</span>)
+<span class="kw">file.exists</span>(<span class="st">&quot;PISA2003.sav&quot;</span>)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<ul>
+<li>Read in the data</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Assumes you have set the working directory!!</span>
+<span class="co">#csv data</span>
+myData &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;myCSV.csv&quot;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>, <span class="dt">na.strings =</span> <span class="kw">c</span>(-<span class="dv">97</span>, -<span class="dv">98</span>, -<span class="dv">999</span>) )
+<span class="co">#txt file - tab deliminated</span>
+myData &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;myText.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">na.strings =</span> -<span class="dv">999</span>)
+<span class="co">#Read in SPSS data</span>
+<span class="kw">library</span>(foreign)
+myData &lt;-<span class="st"> </span><span class="kw">read.spss</span>(<span class="st">&quot;mySPSS.sav&quot;</span>, <span class="dt">to.data.frame =</span> <span class="ot">TRUE</span>, <span class="dt">use.value.labels =</span> <span class="ot">FALSE</span>)</code></pre>
+<ul>
+<li>Foreign will also read in minitab, SAS, stata, etc.</li>
+<li>R also has great support for SQL and other databases.</li>
+</ul>
+</div>
+<div id="installing-and-using-packages" class="slide section level2">
+<h1>Installing and using packages</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;MplusAutomation&quot;</span>)
+<span class="kw">library</span>(MplusAutomation)
+<span class="kw">help</span>(MplusAutomation)
+?prepareMplusData</code></pre>
+</div>
+<div id="exporting-data" class="slide section level2">
+<h1>Exporting data</h1>
+<ul>
+<li>csv: ?write.csv</li>
+<li>txt: ?write.table</li>
+<li>spss: ?write.foreign</li>
+<li>Mplus: ?prepareMplusData</li>
+</ul>
+</div>
+<div id="pulling-it-all-together" class="slide section level2">
+<h1>Pulling it all together</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Set the working directory</span>
+<span class="kw">setwd</span>(<span class="st">&quot;~/Dropbox/Rcourse/data&quot;</span>)
+<span class="co">#Load the required packages</span>
+<span class="kw">library</span>(foreign)<span class="co"># read spss data</span>
+<span class="kw">library</span>(MplusAutomation) <span class="co"># write for spss</span></code></pre>
+<pre><code>## Loading required package: methods</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#read the data</span>
+myData &lt;-<span class="st"> </span><span class="kw">read.spss</span>(<span class="st">&quot;PISA2003-Achievement.sav&quot;</span>, <span class="dt">to.data.frame =</span> <span class="ot">TRUE</span>, <span class="dt">use.value.labels =</span> <span class="ot">FALSE</span>)</code></pre>
+<pre><code>## Warning in read.spss(&quot;PISA2003-Achievement.sav&quot;, to.data.frame = TRUE,
+## use.value.labels = FALSE): PISA2003-Achievement.sav: Unrecognized record
+## type 7, subtype 18 encountered in system file</code></pre>
+<pre><code>## Warning in read.spss(&quot;PISA2003-Achievement.sav&quot;, to.data.frame = TRUE,
+## use.value.labels = FALSE): PISA2003-Achievement.sav: Unrecognized record
+## type 7, subtype 24 encountered in system file</code></pre>
+<pre><code>## re-encoding from UTF-8</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Check it read in ok</span>
+<span class="kw">dim</span>(myData)</code></pre>
+<pre><code>## [1] 1180   23</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(myData)</code></pre>
+<pre><code>##  [1] &quot;SCHOOLID&quot; &quot;STIDSTD&quot;  &quot;PV1MATH&quot;  &quot;PV2MATH&quot;  &quot;PV3MATH&quot;  &quot;PV4MATH&quot; 
+##  [7] &quot;PV5MATH&quot;  &quot;PV1READ&quot;  &quot;PV2READ&quot;  &quot;PV3READ&quot;  &quot;PV4READ&quot;  &quot;PV5READ&quot; 
+## [13] &quot;PV1SCIE&quot;  &quot;PV2SCIE&quot;  &quot;PV3SCIE&quot;  &quot;PV4SCIE&quot;  &quot;PV5SCIE&quot;  &quot;PV1PROB&quot; 
+## [19] &quot;PV2PROB&quot;  &quot;PV3PROB&quot;  &quot;PV4PROB&quot;  &quot;PV5PROB&quot;  &quot;W_FSTUWT&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Advanced! Make that easier to read</span>
+<span class="kw">sprintf</span>(<span class="st">&quot;The number of cases is: %d and the number of variables is: %d&quot;</span>, 
+        <span class="kw">nrow</span>(myData), <span class="kw">length</span>(myData)
+        )</code></pre>
+<pre><code>## [1] &quot;The number of cases is: 1180 and the number of variables is: 23&quot;</code></pre>
+</div>
+<div id="writing-to-mplus" class="slide section level2">
+<h1>Writing to Mplus</h1>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Write to mplus file and get a mplus template file</span>
+<span class="kw">prepareMplusData</span>(myData[,<span class="dv">276</span>:<span class="dv">316</span>], <span class="dt">filename =</span> <span class="st">&quot;mplus.dat&quot;</span>)</code></pre>
+<pre><code>## Error in `[.data.frame`(myData, , 276:316): undefined columns selected</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Advanced! Write the template file to a folder</span>
+<span class="co">#Here I have put a dummy file location so you should </span>
+<span class="kw">capture.output</span>(<span class="kw">prepareMplusData</span>(myData[,<span class="dv">276</span>:<span class="dv">316</span>], <span class="dt">filename =</span> <span class="st">&quot;mplus.dat&quot;</span>), <span class="dt">file =</span> <span class="st">&quot;mplus.inp&quot;</span>)</code></pre>
+<pre><code>## Error in `[.data.frame`(myData, , 276:316): undefined columns selected</code></pre>
+</div>
+</body>
+</html>

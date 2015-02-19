@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Philip Parker" />
+  <title>Day 1 Part 1</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Day 1 Part 1</h1>
+  <p class="author">
+Philip Parker
+  </p>
+  <p class="date">6 February 2015</p>
+</div>
+<div id="why-r" class="slide section level2">
+<h1>Why R</h1>
+<ul>
+<li>Free</li>
+<li>Comprehensive</li>
+<li>Flexible</li>
+<li>Does everything (interactive websites, reproducible research)</li>
+<li>In some cases you have no choice</li>
+<li>Great support for <a href="http://www.r-bloggers.com/how-to-go-parallel-in-r-basics-tips/">parallel</a> processing</li>
+<li>It's fast...er</li>
+<li>Plenty of support from multiple data sources (e.g., Facebook, Twitter, weather, census data, web scrapping)</li>
+<li>Established procedures for downloading, storing, managing, and analysing many large survey data (e.g. PISA)</li>
+<li>R integrates and extends mplus, spss, python, C, Fortran, SQL, HTML/Markdown, ...</li>
+</ul>
+</div>
+<div id="why-not-r" class="slide section level2">
+<h1>Why not R</h1>
+<ul>
+<li>It is a stupid inconsistent <a href="http://www.burns-stat.com/pages/Tutor/R_inferno.pdf">language</a></li>
+<li>It is a full language not a macro language (e.g. spss). The learning curve is steep!!</li>
+<li>It is community supported so no one is paid to be nice to you</li>
+<li>Error messages are designed for those familiar with the language</li>
+</ul>
+</div>
+<div id="some-things-are-just-easier-in-r" class="slide section level2">
+<h1>Some things are just easier in R</h1>
+<p>Some things are just easier in R:</p>
+<ul>
+<li>Say goodbye to reverse scored items</li>
+<li>Dummy coding</li>
+<li>Multilevel modeling</li>
+<li>glm</li>
+<li>SEM</li>
+</ul>
+</div>
+<div id="did-i-mention-pretty-graphs" class="slide section level2">
+<h1>Did I mention pretty graphs?</h1>
+<div class="figure">
+<img src="figure/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1" /><p class="caption">plot of chunk unnamed-chunk-1</p>
+</div>
+</div>
+<div id="interactive-graphs" class="slide section level2">
+<h1>Interactive graphs</h1>
+<iframe src="http://rpubs.com/PhilipParker/plots2" width="800" height="800">
+</iframe>
+</div>
+<div id="pretend-you-are-working" class="slide section level2">
+<h1>Pretend you are working!</h1>
+<pre class="sourceCode r"><code class="sourceCode r">## install.packages(&#39;fun&#39;)
+<span class="kw">library</span>(fun)
+<span class="kw">mine_sweeper</span>()
+<span class="kw">gomoku</span>()</code></pre>
+</div>
+<div id="installing-r" class="slide section level2">
+<h1>Installing R</h1>
+<p>Notes for how to install are located <a href="https://github.com/pdparker/rcourse">here</a></p>
+<ul>
+<li>R is the programming language and can be installed <a href="http://cran.r-project.org/">here</a></li>
+<li>R studio is the better GUI and can be installed <a href="http://www.rstudio.com/products/rstudio/download/">here</a></li>
+</ul>
+<p>Rstudio now covers:</p>
+<ul>
+<li>R programming</li>
+<li>R graphics</li>
+<li>R markdown for word documents, PDFs, web pages</li>
+<li>Shiny for interactive web pages</li>
+<li>Git for version control</li>
+<li>We will only work with R programming in this course</li>
+</ul>
+<p>Lets look at Rstudio now</p>
+</div>
+<div id="repoduciable-research" class="slide section level2">
+<h1>Repoduciable Research</h1>
+<p>Rs greatest strength is reproduciblity. To leverage this:</p>
+<ul>
+<li>Don't be lazy</li>
+<li>Comment comment comment</li>
+<li>Markdown is a super super easy language integrated into Rstudio for html, word, pdf, or slides</li>
+<li>Go do a git course. Absolutely life saving!</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#This is a comment. Have lots of them in your script.</span></code></pre>
+</div>
+<div id="repoduciable-research-1" class="slide section level2">
+<h1>Repoduciable Research</h1>
+<ul>
+<li>Never use point and click menus (only time saving the FIRST time!!)</li>
+<li>Have a quarantined data file. OR just use SQL and only give collaborators read permission</li>
+<li>Only create new data files if you have to!</li>
+<li>Make your code clean, use indentation.</li>
+<li>Use descriptive names - there is no silly 8 character limits for variable names in R</li>
+<li>BE CONSISTENT!!! I use camelCase for everything</li>
+</ul>
+</div>
+</body>
+</html>
