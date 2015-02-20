@@ -1,4 +1,4 @@
-#### Exersises taken from Project Euler projecteuler.net ###
+#### Most Exersises taken from Project Euler projecteuler.net ###
 
 
 # Problem 1 # 

@@ -3,9 +3,12 @@
 
 .SUFFIXES: .Rmd .html .md
 
-all: Day1Part1-Introduction.md Day1Part1-Introduction.html Day1Part1-session2.md Day1Part1-session2.html \
-	Day1Part1-session3.md Day1Part1-session3.html Day1Part2-session1.md Day1Part2-session1.html \
-	Day1Part2-session2.md Day1Part2-session2.html
+all: Day1Part1-Introduction.md Day1Part1-Introduction.html \
+	Day1Part1-session2.md Day1Part1-session2.html \
+	Day1Part1-session3.md Day1Part1-session3.html \
+	Day1Part2-session1.md Day1Part2-session1.html \
+	Day1Part2-session2.md Day1Part2-session2.html \
+	Day1Part2-session3.md Day1Part2-session3.html 
 
 #markdown
 %.md: %.Rmd
