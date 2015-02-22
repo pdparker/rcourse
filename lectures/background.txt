@@ -1,0 +1,9 @@
+<body>
+<div class="background"> 
+  <img id="head-icon" alt="graphic with four colored squares"
+    src="http://www.w3.org/Talks/Tools/Slidy2/graphics/icon-blue.png" /> 
+  <object id="head-logo" title="W3C logo" type="image/svg+xml"
+    data="http://www.w3.org/Talks/Tools/Slidy2/graphics/w3c-logo-white.svg"><img
+   src="http://www.w3.org/Talks/Tools/Slidy2/graphics/w3c-logo-white.gif" 
+   alt="W3C logo" id="head-logo-fallback" /></object>
+</div> 

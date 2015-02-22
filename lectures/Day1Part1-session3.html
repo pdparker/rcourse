@@ -30,11 +30,20 @@ code > span.er { color: #ff0000; font-weight: bold; }
   </style>
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
     href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="slidy.css" />
   <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
     charset="utf-8" type="text/javascript"></script>
 </head>
 <body>
-<div class="slide titlepage">
+<div class="background"> 
+  <img id="head-icon" alt="graphic with four colored squares"
+    src="http://www.w3.org/Talks/Tools/Slidy2/graphics/icon-blue.png" /> 
+  <object id="head-logo" title="W3C logo" type="image/svg+xml"
+    data="http://www.w3.org/Talks/Tools/Slidy2/graphics/w3c-logo-white.svg"><img
+   src="http://www.w3.org/Talks/Tools/Slidy2/graphics/w3c-logo-white.gif" 
+   alt="W3C logo" id="head-logo-fallback" /></object>
+</div> <div class="slide titlepage">
   <h1 class="title">Day 1 Part 1 - Data</h1>
   <p class="author">
 Philip Parker
@@ -81,30 +90,30 @@ Philip Parker
 <pre class="sourceCode r"><code class="sourceCode r">myFunction &lt;-<span class="st"> </span>function(x) <span class="kw">sprintf</span>(<span class="st">&quot;The mean is %.2f and the SD is %.2f&quot;</span>, <span class="kw">mean</span>(x), <span class="kw">sd</span>(x))
 <span class="co">#bias</span>
 <span class="kw">myFunction</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rchisq</span>(<span class="dv">100</span>,<span class="dv">2</span>))))</code></pre>
-<pre><code>## [1] &quot;The mean is 1.99 and the SD is 0.18&quot;</code></pre>
+<pre><code>## [1] &quot;The mean is 1.95 and the SD is 0.20&quot;</code></pre>
 </div>
 <div id="consistency" class="slide section level2">
 <h1>Consistency</h1>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#consistency</span>
 <span class="co"># n = 1</span>
 <span class="kw">sum</span>(<span class="kw">abs</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">1</span>)))) &lt;<span class="st"> </span>.<span class="dv">5</span>)</code></pre>
-<pre><code>## [1] 29</code></pre>
+<pre><code>## [1] 33</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10 </span>
 <span class="kw">sum</span>(<span class="kw">abs</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>)))) &lt;<span class="st"> </span>.<span class="dv">5</span>)</code></pre>
-<pre><code>## [1] 92</code></pre>
+<pre><code>## [1] 90</code></pre>
 </div>
 <div id="efficency" class="slide section level2">
 <h1>Efficency</h1>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Efficency</span>
 <span class="co">#n = 1</span>
 <span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">1</span>))))</code></pre>
-<pre><code>## [1] 0.9989917</code></pre>
+<pre><code>## [1] 1.032311</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10</span>
 <span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>))))</code></pre>
-<pre><code>## [1] 0.3128942</code></pre>
+<pre><code>## [1] 0.3197623</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10000</span>
 <span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10000</span>))))</code></pre>
-<pre><code>## [1] 0.01032493</code></pre>
+<pre><code>## [1] 0.009005056</code></pre>
 </div>
 <div id="regression1" class="slide section level2">
 <h1>Regression1</h1>
@@ -130,19 +139,19 @@ model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y ~<span class="
 ## lm(formula = y ~ x, data = myD)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -8.1426 -1.7617  0.0517  1.6874  6.6426 
+##    Min     1Q Median     3Q    Max 
+## -7.347 -2.379 -0.235  2.168  6.593 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  2.05545    0.68814   2.987  0.00356 ** 
-## x            1.19135    0.06266  19.011  &lt; 2e-16 ***
+## (Intercept)  2.62754    0.76714   3.425 0.000899 ***
+## x            1.17536    0.07136  16.472  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 2.741 on 98 degrees of freedom
-## Multiple R-squared:  0.7867, Adjusted R-squared:  0.7845 
-## F-statistic: 361.4 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 3.341 on 98 degrees of freedom
+## Multiple R-squared:  0.7346, Adjusted R-squared:  0.7319 
+## F-statistic: 271.3 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="regression3" class="slide section level2">
 <h1>Regression3</h1>
@@ -195,8 +204,8 @@ Sigma</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">myD &lt;-<span class="st"> </span><span class="kw">mvrnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">2</span>), Sigma)
 <span class="kw">cor</span>(myD)</code></pre>
 <pre><code>##           [,1]      [,2]
-## [1,] 1.0000000 0.8165632
-## [2,] 0.8165632 1.0000000</code></pre>
+## [1,] 1.0000000 0.7983071
+## [2,] 0.7983071 1.0000000</code></pre>
 </div>
 <div id="getting-help" class="slide section level2">
 <h1>Getting help</h1>

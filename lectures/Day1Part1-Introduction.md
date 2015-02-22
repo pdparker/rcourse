@@ -38,70 +38,15 @@ Some things are just easier in R:
 - SEM
 
 ## Did I mention pretty graphs?
-```{r, echo=FALSE}
-# Earth at night in R
-# took about 30 minutes to code
-
-library(maps)
-data(world.cities)
-#subset minor and major cities
-minmajdat=world.cities[world.cities$pop>10000,]
-
-#subset major cities
-majdat=world.cities[world.cities$pop>100000,]
-
-#subset huge cities
-hdat=world.cities[world.cities$pop>1000000,]
-
-ranker=rank(world.cities$pop)
-
-par(bg=rgb(0,0,0.025),mex=0.5,mar=c(0,0,0,0))
-
-map("world",col=rgb(0,0,0.55,
-alpha=0.05),interior=F,fill=T)
-
-#plot huge cities
-points(hdat$lat[ranker]~hdat$long[ranker],col=rgb(0.25,0.25,0,alpha=0.05)
-,pch='.',cex=(hdat$pop)^c(1/100))
-
-# illumate the night
-
-  for(i in 1:5){
-points(jitter(world.cities$lat[ranker],1)~jitter(world.cities$long[ranker],1),
-col=rgb(230/255,232/255, 250/255,alpha=0.0075),pch='.',cex=(world.cities$pop)^c(1/100))
-	}
-
-#create light haze arround minor & major cities
-	for(i in 1:5){
-icol=rgb(0.7,0.7,0.7,alpha=0.02)
-points(jitter(minmajdat$lat[ranker],10)~
-jitter(minmajdat$long[ranker],10),
-col=icol,pch='.',cex=(minmajdat$pop)^c(1/100))
-	}
-
-#create yellow light haze arround major cities
-	for(i in 1:6){
-icol=rgb(1,1,0,alpha=0.02)
-points(jitter(majdat$lat[ranker],10)~
-jitter(majdat$long[ranker],10),
-col=icol,pch='.',cex=(majdat$pop)^c(1/100))
-	}
-
-#create bright light haze arround huge cities
-	for(i in 1:6){
-icol=rgb(1,1,1,alpha=0.02)
-points(jitter(hdat$lat[ranker],10)~
-jitter(hdat$long[ranker],10),
-col=icol,pch='.',cex=(hdat$pop)^c(1/100))
-	}
-```
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png) 
 
 ## Interactive graphs
 <iframe src="http://rpubs.com/PhilipParker/plots2" width="800" height="800"></iframe>
 
 
 ## Pretend you are working!
-```{r, eval=FALSE}
+
+```r
 ## install.packages('fun')
 library(fun)
 mine_sweeper()
@@ -134,7 +79,8 @@ Rs greatest strength is reproducibility. To leverage this:
 - Markdown is a super super easy language integrated into Rstudio for html, word, pdf, or slides
 - Go do a git course. Absolutely life saving!
 
-```{r, eval=FALSE}
+
+```r
 #This is a comment. Have lots of them in your script.
 ```
 

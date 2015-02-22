@@ -7,3 +7,4 @@ data/
 ./exercises/*.pdf
 ./exercises/*.html
 ./lectures/*.html
+graphics/

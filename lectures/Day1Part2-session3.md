@@ -1,0 +1,58 @@
+---
+title: "Day 1 Part 2 - Debugging"
+author: "Philip Parker"
+date: "6 February 2015"
+output:
+  slidy_presentation:
+     duration: 30
+     css: css/reveal.css
+
+---
+## Basics of debugging
+From [impatient R](http://www.burns-stat.com/documents/tutorials/impatient-r/more-r-errors-and-such/):
+
+- 1.Don’t panic.
+- 2.Guess why it is happening.
+- 3.Check if your guess is correct.
+- 4.Repeat steps 1 through 3 as necessary.
+
+## Basics of debugging
+
+- Read the error message
+- Use names, dim, str, lapply(data, class) to see if your data looks the way you think it does
+- Keep simplifying code till you get the simpelest code that reproduces the error
+- Replace your data with toy datasets from within R.
+- Add print statements to get an indication of where things are breaking down (particularly useful in apply statements and loops)
+- Break your code down to see which chunks work and which do not
+- Look inside objects. Do they look like what you want?
+- Build projects from simple scripts to increasingly complex
+
+## Debugging user defined functions
+
+- Add stop commands to your code
+- Add try commands to your code
+
+
+```r
+myFunction <- function(x){
+	if(!is.numeric(x)) stop("x must be numeric")
+	temp <- c(mean(x, na.rm=TRUE), sd(x, na.rm=TRUE))
+	return(temp)
+}
+
+myFunction(c(1,2,3,4,5,6))
+```
+
+```
+## [1] 3.500000 1.870829
+```
+
+```r
+myFunction(c("a", "b", "c"))
+```
+
+```
+## Error in myFunction(c("a", "b", "c")): x must be numeric
+```
+
+
