@@ -26,7 +26,15 @@ mySecond <- paste(myFirst, collapse = " ")
 #see ?strssplit
 
 #Question set 2#
+# Create vector
 
+#Index vector
+
+#Functions
+
+#Create advanced vectors
+
+#Question set 3#
 # Set working directory 
   # see ?setwd
 
@@ -46,11 +54,20 @@ Exercise 1
 -------------
 1. How many characters are in mySecond?
 2. cat myFirst in upper case font
-3. INTERMEDIATEextract the second to third characters in hello and world from myFirst
+3. INTERMEDIATE: extract the second to third characters in hello and world from myFirst
 4. INTERMEDIATE: Using strsplit, split mySecond on vowels
 
+Exercise 2
+------------------
+1. Create a vector with 15 numeric elements
+2. Extract the 5th elements
+3. Extract elements greater than 5
+4. With the smallest code, extract every 2nd element (Intermediate)
+5. Extract only even numbers or only odd numbers (Advanced)
+6. Try out functions: max, min, range, summary, plot, hist, sort
+7. Create a vector using the functions: sample, rep, rnorm
 
-Exercises 2
+Exercises 3
 ----------
 1. read in data
 2. Check the file has been read in correctly:

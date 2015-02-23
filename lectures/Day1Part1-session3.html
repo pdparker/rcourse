@@ -90,14 +90,14 @@ Philip Parker
 <pre class="sourceCode r"><code class="sourceCode r">myFunction &lt;-<span class="st"> </span>function(x) <span class="kw">sprintf</span>(<span class="st">&quot;The mean is %.2f and the SD is %.2f&quot;</span>, <span class="kw">mean</span>(x), <span class="kw">sd</span>(x))
 <span class="co">#bias</span>
 <span class="kw">myFunction</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rchisq</span>(<span class="dv">100</span>,<span class="dv">2</span>))))</code></pre>
-<pre><code>## [1] &quot;The mean is 1.95 and the SD is 0.20&quot;</code></pre>
+<pre><code>## [1] &quot;The mean is 2.01 and the SD is 0.19&quot;</code></pre>
 </div>
 <div id="consistency" class="slide section level2">
 <h1>Consistency</h1>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#consistency</span>
 <span class="co"># n = 1</span>
 <span class="kw">sum</span>(<span class="kw">abs</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">1</span>)))) &lt;<span class="st"> </span>.<span class="dv">5</span>)</code></pre>
-<pre><code>## [1] 33</code></pre>
+<pre><code>## [1] 38</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10 </span>
 <span class="kw">sum</span>(<span class="kw">abs</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>)))) &lt;<span class="st"> </span>.<span class="dv">5</span>)</code></pre>
 <pre><code>## [1] 90</code></pre>
@@ -107,13 +107,13 @@ Philip Parker
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Efficency</span>
 <span class="co">#n = 1</span>
 <span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">1</span>))))</code></pre>
-<pre><code>## [1] 1.032311</code></pre>
+<pre><code>## [1] 0.9849211</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10</span>
 <span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10</span>))))</code></pre>
-<pre><code>## [1] 0.3197623</code></pre>
+<pre><code>## [1] 0.2912552</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># n = 10000</span>
 <span class="kw">sd</span>(<span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">10000</span>))))</code></pre>
-<pre><code>## [1] 0.009005056</code></pre>
+<pre><code>## [1] 0.01166185</code></pre>
 </div>
 <div id="regression1" class="slide section level2">
 <h1>Regression1</h1>
@@ -140,18 +140,18 @@ model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y ~<span class="
 ## 
 ## Residuals:
 ##    Min     1Q Median     3Q    Max 
-## -7.347 -2.379 -0.235  2.168  6.593 
+## -6.624 -2.035 -0.099  2.013  9.164 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  2.62754    0.76714   3.425 0.000899 ***
-## x            1.17536    0.07136  16.472  &lt; 2e-16 ***
+## (Intercept)  2.43300    0.69726   3.489 0.000727 ***
+## x            1.23224    0.06412  19.218  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 3.341 on 98 degrees of freedom
-## Multiple R-squared:  0.7346, Adjusted R-squared:  0.7319 
-## F-statistic: 271.3 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 2.997 on 98 degrees of freedom
+## Multiple R-squared:  0.7903, Adjusted R-squared:  0.7882 
+## F-statistic: 369.3 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="regression3" class="slide section level2">
 <h1>Regression3</h1>
@@ -203,16 +203,16 @@ Sigma</code></pre>
 ## [2,] 0.8082 1.0000</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">myD &lt;-<span class="st"> </span><span class="kw">mvrnorm</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">2</span>), Sigma)
 <span class="kw">cor</span>(myD)</code></pre>
-<pre><code>##           [,1]      [,2]
-## [1,] 1.0000000 0.7983071
-## [2,] 0.7983071 1.0000000</code></pre>
+<pre><code>##          [,1]     [,2]
+## [1,] 1.000000 0.814443
+## [2,] 0.814443 1.000000</code></pre>
 </div>
 <div id="getting-help" class="slide section level2">
 <h1>Getting help</h1>
 <p>In R:</p>
 <ul>
 <li>Error messages - READ THEM!</li>
-<li>?function</li>
+<li>?functionName</li>
 </ul>
 <p>Help files have the following structure:</p>
 <ul>

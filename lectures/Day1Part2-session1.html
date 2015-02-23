@@ -54,7 +54,6 @@ Philip Parker
 <h1>Basic Descriptives</h1>
 <ul>
 <li>For the rest of the day we will work with two subsamples of the PISA2003 data</li>
-<li>Lets read in the data first</li>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setwd</span>(<span class="st">&quot;~/Dropbox/Rcourse/data/&quot;</span>)
 <span class="kw">library</span>(foreign)
@@ -72,8 +71,7 @@ pisaAch &lt;-<span class="st"> </span><span class="kw">read.spss</span>(<span cl
 <span class="kw">mean</span>(pisaPsych$HISEI, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre>
 <pre><code>## [1] 52.57619</code></pre>
 <ul>
-<li>Try median, range, min, max, table</li>
-<li>Read the help menu on quantile and return ONLY the 2.5 and 97.5% quantiles</li>
+<li>Try median, range, min, max, table, quantiles</li>
 </ul>
 </div>
 <div id="basic-descriptives---multiple-variables" class="slide section level2">
@@ -82,9 +80,6 @@ pisaAch &lt;-<span class="st"> </span><span class="kw">read.spss</span>(<span cl
 <span class="co"># A better set of summary data is in psych package</span>
 <span class="kw">library</span>(psych)
 <span class="kw">describe</span>(pisaPsych)</code></pre>
-<ul>
-<li>Read documentation on describeBy and get statistics for the FIRST 4 variables by gender</li>
-</ul>
 </div>
 <div id="apply-family" class="slide section level2">
 <h1>Apply family</h1>
@@ -116,9 +111,6 @@ pisaAch &lt;-<span class="st"> </span><span class="kw">read.spss</span>(<span cl
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Average achievement across the four domains NOTE use of 1 instead of 2</span>
 pisaAch$GPA &lt;-<span class="st"> </span><span class="kw">apply</span>(pisaAch[,<span class="kw">c</span>(<span class="st">&quot;PV1MATH&quot;</span>, <span class="st">&quot;PV1READ&quot;</span>, <span class="st">&quot;PV1SCIE&quot;</span>, <span class="st">&quot;PV1PROB&quot;</span>)],<span class="dv">1</span>,mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre>
 <ul>
-<li>Create scale scores for the other variables</li>
-<li>Use functions learnt above to explore the new variables</li>
-<li>Plot the new variables: Try plot, hist, boxplot</li>
 <li>We will look at better ways of creating scale scores next time</li>
 </ul>
 </div>

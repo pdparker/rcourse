@@ -32,7 +32,7 @@ Objects in R are just containers that you put elements into for storage.
 
 To put something in a container we use the assignment symbols:
 
-- object.name <- stuff you want put in the container
+- objectName <- stuff you want put in the container
 
 Containers come in the form of:
 
@@ -63,6 +63,9 @@ mySecond <- paste(myFirst, collapse = " ")
 # We can now apply functions to this and functions within functions. 
 # Lets shout out excitement at learning R
 cat(toupper(mySecond), sep = " ")
+# Another way to do this you might find easier to follow
+library(magrittr)
+myFirst %<>% paste(collapse = " ") %>% toupper %>% cat
 ```
 
 ##Other functions to play with
@@ -101,17 +104,6 @@ which(myVect > 3) # can also use ==, <, <=, >=, !=
 #Extract them
 myVect[which(myVect > 3)]
 ```
-
-## Exercises
-- Create a vector with 15 numeric elements
-- Extract the 5th elements
-- Extract elements greater than 5
-- With the smallest code, extract every 2nd element (Intermediate)
-- Extract only even numbers or only odd numbers (Advanced)
-
-## Functions to try
-- max, min, range, summary, plot, hist, sort
-- Create a vector using the functions: sample, rep, rev
 
 ## Factors 
 Factors are special character vectors
@@ -207,7 +199,7 @@ Surprisingly most people give up on R in the first few minutes because they cann
 
 ## Data - where is it
 
-- R is based on unix OS so using "/" to separate folders rather than "\". 
+- R is based on unix OS so using "/" to separate folders rather than "\\". 
 - Your default home location will be represented by a "~" sign  
 - Lets see if a file exists (use the 'tab' key for code completion)
 ```{r}
@@ -270,10 +262,10 @@ sprintf("The number of cases is: %d and the number of variables is: %d",
 ## Writing to Mplus
 ```{r}
 #Write to mplus file and get a mplus template file
-prepareMplusData(myData[,276:316], filename = "mplus.dat")
+prepareMplusData(myData, filename = "mplus.dat")
 #Advanced! Write the template file to a folder
 #Here I have put a dummy file location so you should 
-capture.output(prepareMplusData(myData[,276:316], filename = "mplus.dat"), file = "mplus.inp")
+capture.output(prepareMplusData(myData, filename = "mplus.dat"), file = "mplus.inp")
 ```
 
 

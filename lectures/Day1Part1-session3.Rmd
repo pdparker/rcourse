@@ -101,7 +101,7 @@ cor(myD)
 In R:
 
 - Error messages - READ THEM!
-- ?function
+- ?functionName
 
 Help files have the following structure:
 

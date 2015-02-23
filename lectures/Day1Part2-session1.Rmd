@@ -12,7 +12,6 @@ output:
 
 ## Basic Descriptives
  - For the rest of the day we will work with two subsamples of the PISA2003 data
- - Lets read in the data first 
 ```{r, results='hide', warning=FALSE,message=FALSE}
 setwd("~/Dropbox/Rcourse/data/")
 library(foreign)
@@ -30,8 +29,7 @@ mean(pisaPsych$HISEI)
 mean(pisaPsych$HISEI, na.rm=TRUE)
 ```
 
-- Try median, range, min, max, table
-- Read the help menu on quantile and return ONLY the 2.5 and 97.5% quantiles
+- Try median, range, min, max, table, quantiles
 
 ## Basic Descriptives - Multiple Variables
 ```{r, eval=FALSE}
@@ -40,7 +38,6 @@ summary(pisaPsych)
 library(psych)
 describe(pisaPsych)
 ```
-- Read documentation on describeBy and get statistics for the FIRST 4 variables by gender
 
 ## Apply family
 - The apply family is R's compact version of for loops.
@@ -53,9 +50,6 @@ tapply(pisaAch$PV1PROB, pisaAch$SCHOOLID, mean, na.rm=TRUE)
 pisaAch$GPA <- apply(pisaAch[,c("PV1MATH", "PV1READ", "PV1SCIE", "PV1PROB")],1,mean, na.rm=TRUE)
 ```
 
-- Create scale scores for the other variables 
-- Use functions learnt above to explore the new variables
-- Plot the new variables: Try plot, hist, boxplot
 - We will look at better ways of creating scale scores next time
 
 ## Subsetting and splitting

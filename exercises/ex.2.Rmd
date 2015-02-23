@@ -5,12 +5,6 @@ date: "18 February 2015"
 output: html_document
 ---
 
-Simulation Regression
---------------
-
-1. Create and save a new R script
-2. Use the following template to answer the questions
-
 Toy data in R
 ---------------
 1. load data iris and do a cross-tab on the column Species
@@ -20,7 +14,7 @@ Toy data in R
 5. Which row/s have the largest Sepal width
 
 ```{r}
-## See template file for exercise ex.2 ##
+## See template file for exercise ex.2a ##
 #load iris data
 
 # Index from iris
@@ -28,6 +22,11 @@ Toy data in R
 ```
 
 
+Simulation Regression
+--------------
+
+1. Create and save a new R script
+2. Use the following template to answer the questions
 
 Questions:
 -------------
@@ -39,6 +38,7 @@ Questions:
 5. The model1 and model1.sum objects. Have a look inside them!
 
 ```{r, eval=FALSE}
+## See template file for exercise ex.2b ##
 # The number of participants
 n <- 1000
 # A normally distributed predictor variable
@@ -82,6 +82,7 @@ Simulation data from correlation matrix:
 6. Practice indexing by row and/or column from your dataset. Can you extract every second or every third row? What about datapoints that are only in cells with even reference points (i.e. [2,2] or [4,6])?
 
 ```{r}
+## See template file for exercise ex.2b ##
 #install package MASS
 # note you only need to run this ONCE!!
 

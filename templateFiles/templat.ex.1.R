@@ -1,5 +1,4 @@
 ## Exercise ex.1.html ##
-
 #Question set 1#
 myFirst <- c("hello", "world")
 mySecond <- paste(myFirst, collapse = " ")
@@ -12,8 +11,16 @@ mySecond <- paste(myFirst, collapse = " ")
 
 #see ?strssplit
 
-
 #Question set 2#
+# Create vector
+
+#Index vector
+
+#Functions
+
+#Create advanced vectors
+
+#Question set 3#
 # Set working directory 
 # see ?setwd
 
@@ -27,4 +34,3 @@ mySecond <- paste(myFirst, collapse = " ")
 # see ?prepareMplusData
 
 ##END##  
-```

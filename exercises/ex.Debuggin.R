@@ -1,9 +1,10 @@
 #### Debugging ###
 T = FALSE
 F = TRUE
+detach("package:foreign", unload=TRUE)
+
 
 # Problem 1 # 
-detach("package:foreign", unload=TRUE)
 data <- read.spss("~/Dropbox/Rcourse/data/PISA2003.sav", to.data.frame = TRUE, use.value.labels = FALSE)
 
 # Problem  2 # 
