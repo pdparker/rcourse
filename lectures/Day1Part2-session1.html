@@ -122,7 +122,7 @@ schoolAbility &lt;-<span class="st"> </span><span class="kw">split</span>(pisaAc
 girls &lt;-<span class="st"> </span><span class="kw">subset</span>(pisaPsych, <span class="dt">subset =</span> gender ==<span class="st"> </span><span class="dv">1</span>)
 boys &lt;-<span class="st"> </span><span class="kw">subset</span>(pisaPsych, <span class="dt">subset =</span> gender ==<span class="st"> </span><span class="dv">2</span>)</code></pre>
 <ul>
-<li>lookup the lapply and sapply commands. Can you get summary statistics for each school?</li>
+<li>The lapply and sapply commands with apply functions to all dataframes in a list</li>
 </ul>
 </div>
 <div id="merge" class="slide section level2">
@@ -138,10 +138,10 @@ pisaPsych &lt;-<span class="st"> </span><span class="kw">rbind.data.frame</span>
 <span class="co">#Merge by ID</span>
 pisaAllData &lt;-<span class="st"> </span><span class="kw">merge</span>(pisaPsych, pisaAch, <span class="dt">by =</span> <span class="st">&quot;STIDSTD&quot;</span>)
 <span class="co">#check</span>
-<span class="kw">sprintf</span>(<span class="st">&quot;The number of CASE in pisaPsych is %d, in pisaAch is %d, and in the merged data is %d/n&quot;</span>, 
+<span class="kw">sprintf</span>(<span class="st">&quot;The number of CASES in pisaPsych is %d, in pisaAch is %d, and in the merged data is %d </span><span class="ch">\n</span><span class="st">&quot;</span>, 
         <span class="kw">nrow</span>(pisaPsych),<span class="kw">nrow</span>(pisaAch), <span class="kw">nrow</span>(pisaAllData)
         )</code></pre>
-<pre><code>## [1] &quot;The number of CASE in pisaPsych is 1180, in pisaAch is 1180, and in the merged data is 1180/n&quot;</code></pre>
+<pre><code>## [1] &quot;The number of CASES in pisaPsych is 1180, in pisaAch is 1180, and in the merged data is 1180 \n&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sprintf</span>(<span class="st">&quot;The number of VARIABLES in pisaPsych is %d, in pisaAch is %d, and in the merged data is %d&quot;</span>, 
         <span class="kw">length</span>(pisaPsych),<span class="kw">length</span>(pisaAch), <span class="kw">length</span>(pisaAllData)
         )</code></pre>
