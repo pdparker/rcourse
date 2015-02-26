@@ -1,12 +1,22 @@
-Hi All,
-
-Before the course start in the coming weeks I wanted to send some resources your way. We all go through most of this in the course but it is sometimes helpful to get ahead. The outline of the course structure is [below](#structure).
 
 Links to data
 -------------
 [PISA Data](https://www.dropbox.com/s/v0k2joopom6lagj/PISA2003.sav?dl=0)
 
 [PISA Achievement Data](https://www.dropbox.com/s/wz5p7of5q4cnkhi/PISA2003-Achievement.sav?dl=0)
+
+[PISA data for SEM](https://www.dropbox.com/s/q2ctuq74iehm6l9/PISA2003-items.sav?dl=0)
+
+Links to day 2 slides
+--------------------
+[Regression and multilevel](http://nbviewer.ipython.org/github/pdparker/rcourse/blob/master/Regression%20in%20R.ipynb)
+
+[Structural equation modelling](http://nbviewer.ipython.org/github/pdparker/rcourse/blob/master/SEM.ipynb)
+
+Hi All,
+
+Before the course start in the coming weeks I wanted to send some resources your way. We all go through most of this in the course but it is sometimes helpful to get ahead. The outline of the course structure is [below](#structure).
+
 
 First thing first
 ------------------
