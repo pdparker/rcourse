@@ -96,13 +96,13 @@ visualize.lme <- function (model, coefficient, group, ...){
 	
 	number.lines <- nrow(effects)
 	
-	predictor.min <- tapply(model$data[[coefficient]], model$data[[group]], min, na.rm=TRUE)
-	predictor.max <- tapply(model$data[[coefficient]], model$data[[group]], max, na.rm=TRUE)
+	predictor.min <- tapply(model@frame[[coefficient]], model@frame[[group]], min, na.rm=TRUE)
+	predictor.max <- tapply(model@frame[[coefficient]], model@frame[[group]], max, na.rm=TRUE)
 	
 	outcome.min <- min(predict(model), na.rm=TRUE)
 	outcome.max <- max(predict(model), na.rm=TRUE)
 	
-	plot (c(min(predictor.min),max(predictor.max)),c(outcome.min,outcome.max), type="n", ...)
+	plot (c(min(predictor.min),max(predictor.max)),c(outcome.min,outcome.max), type="n")
 	
 	for (i in 1:number.lines){
 		expression <- function(x) {effects[i,1] + (effects[i,2] * x) }
