@@ -7,11 +7,14 @@ Links to data
 
 [PISA data for SEM](https://www.dropbox.com/s/q2ctuq74iehm6l9/PISA2003-items.sav?dl=0)
 
+
 Links to day 2 slides
 --------------------
 [Regression and multilevel](http://nbviewer.ipython.org/github/pdparker/rcourse/blob/master/Regression%20in%20R.ipynb)
 
 [Structural equation modelling](http://nbviewer.ipython.org/github/pdparker/rcourse/blob/master/SEM.ipynb)
+
+[Missing data via multiple imputations](http://nbviewer.ipython.org/github/pdparker/rcourse/blob/master/Missing%20Data.ipynb)
 
 Hi All,
 
