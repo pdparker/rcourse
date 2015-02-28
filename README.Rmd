@@ -16,7 +16,10 @@ Links to day 2 slides
 
 [Missing data via multiple imputations](http://nbviewer.ipython.org/github/pdparker/rcourse/blob/master/Missing%20Data.ipynb)
 
-Hi All,
+[Plots](http://nbviewer.ipython.org/github/pdparker/rcourse/blob/master/Plots.ipynb)
+
+Introduction
+-------------
 
 Before the course start in the coming weeks I wanted to send some resources your way. We all go through most of this in the course but it is sometimes helpful to get ahead. The outline of the course structure is [below](#structure).
 
