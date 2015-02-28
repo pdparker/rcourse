@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)http://nbviewer.ipython.org/github/pdparker/rcourse/blob/master/SEM.ipynb -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <meta name="description" content="">
+    
+
+    
+    <meta name="author" content="">
+    
+
+    <!--NEW RELIC Start Perf Measurement-->
+    
+    <!--NREND-->
+
+    <!-- Le styles -->
+    <link href="http://nbviewer.ipython.org/static/build/styles.css" rel="stylesheet">
+
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://nbviewer.ipython.org/static/ico/ipynb_icon_16x16.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://nbviewer.ipython.org/static/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://nbviewer.ipython.org/static/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://nbviewer.ipython.org/static/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="http://nbviewer.ipython.org/static/ico/apple-touch-icon-57-precomposed.png">
+    
+    
+    
+
+    
+
+    
+    <meta name="twitter:card" content="summary">
+
+    
+    <meta name="twitter:title" content="Notebook on nbviewer">
+    
+
+    
+    <meta name="twitter:description" content="Check out this Jupyter notebook!">
+    
+
+    
+    <meta name="twitter:domain" content="nbviewer.ipython.org">
+    
+
+    <meta name="twitter:image:src" content="http://ipython.org/ipython-doc/dev/_images/ipynb_icon_128x128.png">
+    
+    
+    
+
+    <link href="http://nbviewer.ipython.org/static/build/notebook.css" rel="stylesheet">
+    
+    <script async="" src="./SEM.ipynb_files/analytics.js"></script><script src="./SEM.ipynb_files/MathJax.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+    init_mathjax = function() {
+        if (window.MathJax) {
+            // MathJax loaded
+            MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true,
+                    processEnvironments: true
+                },
+                displayAlign: 'center',
+                "HTML-CSS": {
+                    styles: {'.MathJax_Display': {"margin": 0}},
+                    linebreaks: { automatic: true }
+                }
+            });
+            MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        }
+    }
+    init_mathjax();
+    </script>
+    
+  <style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">.MathJax_Preview .MJXc-math {color: inherit!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXc-script {font-size: .8em}
+.MJXc-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXc-bold {font-weight: bold}
+.MJXc-italic {font-style: italic}
+.MJXc-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-largeop {font-size: 150%}
+.MJXc-largeop.MJXc-int {vertical-align: -.2em}
+.MJXc-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXc-display {display: block; text-align: center; margin: 1em 0}
+.MJXc-math span {display: inline-block}
+.MJXc-box {display: block!important; text-align: center}
+.MJXc-box:after {content: " "}
+.MJXc-rule {display: block!important; margin-top: .1em}
+.MJXc-char {display: block!important}
+.MJXc-mo {margin: 0 .15em}
+.MJXc-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXc-denom {display: inline-table!important; width: 100%}
+.MJXc-denom > * {display: table-row!important}
+.MJXc-surd {vertical-align: top}
+.MJXc-surd > * {display: block!important}
+.MJXc-script-box > *  {display: table!important; height: 50%}
+.MJXc-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXc-script-box > *:last-child > * {vertical-align: bottom}
+.MJXc-script-box > * > * > * {display: block!important}
+.MJXc-mphantom {visibility: hidden}
+.MJXc-munderover {display: inline-table!important}
+.MJXc-over {display: inline-block!important; text-align: center}
+.MJXc-over > * {display: block!important}
+.MJXc-munderover > * {display: table-row!important}
+.MJXc-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXc-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXc-mtr {display: table-row!important}
+.MJXc-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXc-mtr > .MJXc-mtd:first-child {padding-left: 0}
+.MJXc-mtr:first-child > .MJXc-mtd {padding-top: 0}
+.MJXc-mlabeledtr {display: table-row!important}
+.MJXc-mlabeledtr > .MJXc-mtd:first-child {padding-left: 0}
+.MJXc-mlabeledtr:first-child > .MJXc-mtd {padding-top: 0}
+.MJXc-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXc-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXc-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXc-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXc-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXc-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXc-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXc-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXc-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXc-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXc-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_CHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+  <body data-spy="scroll" data-target=".subnav" data-offset="50"><div id="MathJax_Message" style="display: none;"></div>
+
+  <!-- These are loaded at the top of the body so they are available to notebook
+  cells when they are loaded below. -->
+  <script src="./SEM.ipynb_files/jquery.min.js"></script>
+  <script src="./SEM.ipynb_files/require.js"></script>
+  <script src="./SEM.ipynb_files/moment.min.js"></script>
+
+  <!-- Navbar
+  ================================================== -->
+    <div id="menubar" class="navbar navbar-fixed-top hidden-print animated headroom--top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="fa fa-bars"></span>
+          </button>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+
+                <li>
+        <a href="http://nbviewer.ipython.org/" title="nbviewer">
+            <strong>
+            <span>nbviewer</span>
+            </strong>
+        </a>
+    </li>
+                <li>
+        <a href="http://nbviewer.ipython.org/faq" title="FAQ">
+            
+            <span>FAQ</span>
+            
+        </a>
+    </li>
+
+              <li class="">
+                <a href="http://ipython.org/">IPython</a>
+              </li>
+
+              <li class="">
+                <a href="http://jupyter.org/">Jupyter</a>
+              </li>
+
+            </ul>
+            <ul class="nav pull-right">
+              
+              
+      
+        <li>
+        <a href="https://github.com/pdparker/rcourse/blob/master/SEM.ipynb" title="Notebook Home">
+            <span class="fa fa-github fa-2x menu-icon"></span>
+            <span class="menu-text">Notebook Home</span>
+        </a>
+    </li>
+      
+        <li>
+        <a href="https://raw.githubusercontent.com/pdparker/rcourse/master/SEM.ipynb" title="Download Notebook" download="">
+            <span class="fa fa-download fa-2x menu-icon"></span>
+            <span class="menu-text">Download Notebook</span>
+        </a>
+    </li>
+    
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+
+     
+    
+<ul class="breadcrumb">
+    
+    <li><a href="http://nbviewer.ipython.org/github/pdparker/rcourse/tree/master">rcourse</a> <span class="divider">/</span></li>
+    
+    <li><a href="http://nbviewer.ipython.org/github/pdparker/rcourse/tree/master/SEM.ipynb">SEM.ipynb</a> <span class="divider">/</span></li>
+    
+</ul>
+
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c">#ignore python vodoo in this cell</span>
+<span class="o">%</span><span class="k">load_ext</span> <span class="n">rmagic</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="structural-equation-modelling-in-r">Structural Equation Modelling in R</h1>
+<p><a name="top"></a></p>
+<ol>
+<li><a href="http://nbviewer.ipython.org/github/pdparker/rcourse/blob/master/SEM.ipynb#complex">Complex survey data</a></li>
+<li><a href="http://nbviewer.ipython.org/github/pdparker/rcourse/blob/master/SEM.ipynb#cfa">Basic CFA</a></li>
+<li><a href="http://nbviewer.ipython.org/github/pdparker/rcourse/blob/master/SEM.ipynb#invariance">Measurement Invariance</a></li>
+<li><a href="http://nbviewer.ipython.org/github/pdparker/rcourse/blob/master/SEM.ipynb#sem">Structural Equation Modelling</a></li>
+<li><a href="http://nbviewer.ipython.org/github/pdparker/rcourse/blob/master/SEM.ipynb#semInvariance">SEM - Multigroup</a></li>
+<li><a href="http://nbviewer.ipython.org/github/pdparker/rcourse/blob/master/SEM.ipynb#additional">Additional functions</a></li>
+</ol>
+<p>We will be working with two packages. Lavaan and lavaan survey. Lavaan is the basic SEM package while lavaan survey provides a basis for working with complex survey data like PISA. </p>
+<h2 id="set-up-of-survey-data">Set up of survey data</h2>
+<p><a name="complex"></a></p>
+<p>Data like PISA uses a complex sampeling procedure. In the case of PISA this procedure has two stages:</p>
+<ol>
+<li>Selection of school proportional to size</li>
+<li>Selection of participants from within that school</li>
+</ol>
+<p>To account for this we sampeling we may want to use multilevel modelling but for SEM in our case we will just focus on fixed effects. The PISA manual thus suggests we should analyze the data by a) using population weights, b) using replicant weights to account for the complex data structure and c) plausible values for achievement.</p>
+<p>To account for all this in a model is complex so we are going to off-load the heavy lifting to the lavaan survey package.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="o">%%</span>R
+<span class="c1">#set working directory</span>
+<span class="kp">setwd</span><span class="p">(</span><span class="s">"/Users/phparker/Dropbox/Rcourse/data"</span><span class="p">)</span>
+<span class="c1">#read in the data</span>
+<span class="kn">library</span><span class="p">(</span>foreign<span class="p">)</span>
+pisa <span class="o">&lt;-</span> read.spss<span class="p">(</span><span class="s">"PISA2003-items.sav"</span><span class="p">,</span> to.data.frame<span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> use.value.labels <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+<span class="c1">#load required packages</span>
+<span class="kn">library</span><span class="p">(</span>lavaan<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>lavaan.survey<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>mitools<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>semTools<span class="p">)</span>
+<span class="c1">###Set up survey data</span>
+<span class="c1">#We need to create 5 files each with one set of PVs</span>
+pisaPv <span class="o">&lt;-</span> <span class="kt">list</span><span class="p">()</span>
+<span class="c1"># Here we use a loop to create 5 datasets each with a unique set of PVs and give the PVs consistent names</span>
+<span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">){</span>
+	extraction <span class="o">&lt;-</span> <span class="kp">paste0</span><span class="p">(</span><span class="s">"^PV"</span><span class="p">,</span> i<span class="p">,</span> <span class="s">".+"</span><span class="p">)</span>
+	pisaPv<span class="p">[[</span>i<span class="p">]]</span> <span class="o">&lt;-</span> pisa<span class="p">[,</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">46</span><span class="p">,</span> <span class="m">87</span><span class="o">:</span><span class="m">167</span><span class="p">,</span> <span class="kp">grep</span><span class="p">(</span>extraction<span class="p">,</span> <span class="kp">names</span><span class="p">(</span>pisa<span class="p">)))]</span>
+	pisaPv<span class="p">[[</span>i<span class="p">]][,</span> <span class="kp">grep</span><span class="p">(</span><span class="s">"^PV[1-5]"</span><span class="p">,</span> <span class="kp">names</span><span class="p">(</span>pisaPv<span class="p">[[</span>i<span class="p">]]))]</span> <span class="o">&lt;-</span> 
+		<span class="kp">apply</span><span class="p">(</span>pisaPv<span class="p">[[</span>i<span class="p">]][,</span> <span class="kp">grep</span><span class="p">(</span><span class="s">"^PV[1-5]"</span><span class="p">,</span> <span class="kp">names</span><span class="p">(</span>pisaPv<span class="p">[[</span>i<span class="p">]]))],</span><span class="m">2</span><span class="p">,</span> <span class="kp">scale</span><span class="p">)</span>
+	<span class="kp">names</span><span class="p">(</span>pisaPv<span class="p">[[</span>i<span class="p">]])</span> <span class="o">&lt;-</span> <span class="kp">gsub</span><span class="p">(</span><span class="s">"^PV[1-5]"</span><span class="p">,</span><span class="s">""</span><span class="p">,</span><span class="kp">names</span><span class="p">(</span>pisaPv<span class="p">[[</span>i<span class="p">]]))</span>
+	<span class="p">}</span>
+<span class="c1">#Tell R these are plausible values - imputation list comes from MItools</span>
+a <span class="o">&lt;-</span> imputationList<span class="p">(</span>pisaPv<span class="p">)</span>
+<span class="c1">#The following set-up is approipriate for all PISA analysis with any current cohort</span>
+pisaSurvey <span class="o">&lt;-</span> svrepdesign<span class="p">(</span>ids <span class="o">=</span> <span class="o">~</span><span class="m">1</span><span class="p">,</span> weights <span class="o">=</span> <span class="o">~</span>W_FSTUWT<span class="p">,</span> data <span class="o">=</span> a<span class="p">,</span>
+					   repweights <span class="o">=</span> <span class="s">"W_FSTR[0-9]+"</span><span class="p">,</span> type <span class="o">=</span> <span class="s">"Fay"</span><span class="p">,</span> rho <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span>
+<span class="kp">print</span><span class="p">(</span>pisaSurvey<span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_text output_subarea ">
+<pre>re-encoding from UTF-8
+Multiple (5) imputations: svrepdesign(ids = ~1, weights = ~W_FSTUWT, data = a, repweights = "W_FSTR[0-9]+", 
+    type = "Fay", rho = 0.5)
+
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="how-to-run-sem">How to Run SEM</h2>
+<p>To run a CFA or SEM model we will use the lavaan package. To account for survey design we will use lavaan survey. Out general approach will be:</p>
+<ol>
+<li>Write a model</li>
+<li>Pass it to lavaan</li>
+<li>Pass the fitted model to lavaan.survey to correct standard errors and fit statistics</li>
+<li>Extract the information we want</li>
+</ol>
+<p>The model syntax is very similar to mplus:</p>
+<ol>
+<li>Instead of BY for factor loadings we use =~</li>
+<li>Instead of ON for regression, intercepts, and latent means we use ~</li>
+<li>Instead of WITH for covariances/variances we use ~~</li>
+<li>To name a parameter for fixing parameters OR model constraint we use name*parameter </li>
+<li>To fix a parameter we use number*parameter</li>
+<li>Start values we use start(number)*parameter</li>
+<li>Instead of a seperate model constraint section you can do it at any stage with newParameter := parameter + parameter</li>
+</ol>
+<h2 id="lavaan-magic">Lavaan magic</h2>
+<p>Lavaan will take mplus files as input with the mplus2lavaan function.</p>
+<p>semtools will take lisrel files as input and feed to lavaan with the lisrel2lavaan function.</p>
+<h2 id="fitting-a-cfa">Fitting a CFA</h2>
+<p><a name="cfa"></a></p>
+<p>Here we fit a CFA model:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="o">%%</span>R
+<span class="c1">#Model syntax</span>
+model <span class="o">&lt;-</span> <span class="s">'</span>
+<span class="s">selfConcept =~ ST32Q02 + ST32Q04 + ST32Q06 + ST32Q07 + ST32Q09</span>
+<span class="s">anxiety =~ ST32Q01 + ST32Q03 + ST32Q05 + ST32Q08 + ST32Q10</span>
+<span class="s">'</span>
+<span class="c1"># Model without population corrections</span>
+fit <span class="o">&lt;-</span> cfa<span class="p">(</span>model<span class="p">,</span> data<span class="o">=</span>pisa<span class="p">,</span> estimator <span class="o">=</span> <span class="s">'MLR'</span><span class="p">,</span> missing <span class="o">=</span> <span class="s">'default'</span><span class="p">)</span>
+<span class="c1"># Model with population corrections</span>
+fitSurvey <span class="o">&lt;-</span> lavaan.survey<span class="p">(</span>fit<span class="p">,</span> pisaSurvey<span class="p">)</span>
+<span class="c1">#Compare fit</span>
+<span class="kp">cat</span><span class="p">(</span><span class="s">"fit indices for uncorrected data:\n"</span><span class="p">)</span>
+<span class="kp">print</span><span class="p">(</span>fitMeasures<span class="p">(</span>fit<span class="p">)[</span><span class="kt">c</span><span class="p">(</span><span class="s">"tli"</span><span class="p">,</span> <span class="s">"cfi"</span><span class="p">,</span> <span class="s">"rmsea"</span><span class="p">,</span> <span class="s">"chisq"</span><span class="p">,</span> <span class="s">"df"</span><span class="p">)])</span>
+<span class="kp">cat</span><span class="p">(</span><span class="s">"fit indices for survey corrected data:\n"</span><span class="p">)</span>
+<span class="kp">print</span><span class="p">(</span>fitMeasures<span class="p">(</span>fitSurvey<span class="p">)[</span><span class="kt">c</span><span class="p">(</span><span class="s">"tli"</span><span class="p">,</span> <span class="s">"cfi"</span><span class="p">,</span> <span class="s">"rmsea"</span><span class="p">,</span> <span class="s">"chisq"</span><span class="p">,</span> <span class="s">"df"</span><span class="p">)])</span>
+<span class="c1"># Standardized estimates</span>
+<span class="c1">#or summary to get everything</span>
+<span class="kp">cat</span><span class="p">(</span><span class="s">"Standardized parameter estimates:\n"</span><span class="p">)</span>
+<span class="kp">print</span><span class="p">(</span>standardizedSolution<span class="p">(</span>fitSurvey<span class="p">)</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_text output_subarea ">
+<pre>fit indices for uncorrected data:
+         tli          cfi        rmsea        chisq           df 
+  0.94751475   0.96034447   0.07841915 267.12991963  34.00000000 
+fit indices for survey corrected data:
+         tli          cfi        rmsea        chisq           df 
+  0.93832647   0.95340222   0.08589661 330.01451020  34.00000000 
+Standardized parameter estimates:
+           lhs op         rhs est.std    se       z pvalue
+1  selfConcept =~     ST32Q02   0.819    NA      NA     NA
+2  selfConcept =~     ST32Q04  -0.750 0.056 -13.424      0
+3  selfConcept =~     ST32Q06  -0.821 0.033 -24.593      0
+4  selfConcept =~     ST32Q07  -0.768 0.032 -23.838      0
+5  selfConcept =~     ST32Q09  -0.762 0.032 -23.968      0
+6      anxiety =~     ST32Q01   0.717    NA      NA     NA
+7      anxiety =~     ST32Q03   0.742 0.050  14.829      0
+8      anxiety =~     ST32Q05   0.729 0.047  15.433      0
+9      anxiety =~     ST32Q08   0.777 0.046  16.878      0
+10     anxiety =~     ST32Q10   0.601 0.042  14.156      0
+11     ST32Q02 ~~     ST32Q02   0.329 0.023  14.183      0
+12     ST32Q04 ~~     ST32Q04   0.438 0.045   9.705      0
+13     ST32Q06 ~~     ST32Q06   0.326 0.024  13.507      0
+14     ST32Q07 ~~     ST32Q07   0.410 0.022  18.947      0
+15     ST32Q09 ~~     ST32Q09   0.420 0.025  17.090      0
+16     ST32Q01 ~~     ST32Q01   0.486 0.038  12.674      0
+17     ST32Q03 ~~     ST32Q03   0.449 0.021  20.999      0
+18     ST32Q05 ~~     ST32Q05   0.469 0.045  10.315      0
+19     ST32Q08 ~~     ST32Q08   0.396 0.043   9.259      0
+20     ST32Q10 ~~     ST32Q10   0.639 0.038  16.928      0
+21 selfConcept ~~ selfConcept   1.000 0.051  19.696      0
+22     anxiety ~~     anxiety   1.000 0.087  11.456      0
+23 selfConcept ~~     anxiety   0.841 0.023  36.611      0
+24     ST32Q02 ~1               3.185 0.031 103.960      0
+25     ST32Q04 ~1               3.028 0.043  70.075      0
+26     ST32Q06 ~1               3.060 0.042  72.396      0
+27     ST32Q07 ~1               2.927 0.034  85.201      0
+28     ST32Q09 ~1               3.403 0.035  98.412      0
+29     ST32Q01 ~1               3.090 0.038  81.111      0
+30     ST32Q03 ~1               3.841 0.044  88.245      0
+31     ST32Q05 ~1               4.189 0.053  78.808      0
+32     ST32Q08 ~1               3.874 0.041  94.572      0
+33     ST32Q10 ~1               2.496 0.051  48.730      0
+34 selfConcept ~1               0.000    NA      NA     NA
+35     anxiety ~1               0.000    NA      NA     NA
+
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="measurement-invariance">Measurement Invariance</h2>
+<p><a name="invariance"></a></p>
+<p>To run invariance you can add group="groupingVariables";
+And then you fix parameters you add the key words group.equal=c("loadings","intercepts")
+to the cfa() function.</p>
+<p>Or you can use the semTools package to automate either a four (strict=FALSE) or five (strict=TRUE) model invariance.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="o">%%</span>R
+<span class="c1">## Multiple groups</span>
+measurementInvariance<span class="p">(</span>model<span class="p">,</span> data<span class="o">=</span>pisa<span class="p">,</span> estimator <span class="o">=</span> <span class="s">'MLR'</span><span class="p">,</span> missing <span class="o">=</span> <span class="s">'default'</span><span class="p">,</span> group <span class="o">=</span> <span class="s">'gender'</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_text output_subarea ">
+<pre>
+Measurement invariance tests:
+
+Model 1: configural invariance:
+chisq.scaled           df       pvalue   cfi.scaled rmsea.scaled          bic 
+     233.681       68.000        0.000        0.957        0.066    21571.398 
+
+Model 2: weak invariance (equal loadings):
+chisq.scaled           df       pvalue   cfi.scaled rmsea.scaled          bic 
+     242.263       76.000        0.000        0.957        0.063    21520.837 
+
+[Model 1 versus model 2]
+     delta.chisq         delta.df    delta.p.value        delta.cfi 
+           4.921            8.000            0.766            0.000 
+delta.cfi.scaled 
+           0.000 
+
+Model 3: strong invariance (equal loadings + intercepts):
+chisq.scaled           df       pvalue   cfi.scaled rmsea.scaled          bic 
+     265.492       84.000        0.000        0.953        0.062    21487.262 
+
+[Model 1 versus model 3]
+     delta.chisq         delta.df    delta.p.value        delta.cfi 
+          26.361           16.000            0.049            0.002 
+delta.cfi.scaled 
+           0.004 
+
+[Model 2 versus model 3]
+     delta.chisq         delta.df    delta.p.value        delta.cfi 
+          22.512            8.000            0.004            0.003 
+delta.cfi.scaled 
+           0.004 
+
+Model 4: equal loadings + intercepts + means:
+chisq.scaled           df       pvalue   cfi.scaled rmsea.scaled          bic 
+     292.868       86.000        0.000        0.946        0.066    21507.224 
+
+[Model 1 versus model 4]
+     delta.chisq         delta.df    delta.p.value        delta.cfi 
+          58.558           18.000            0.000            0.008 
+delta.cfi.scaled 
+           0.011 
+
+[Model 3 versus model 4]
+     delta.chisq         delta.df    delta.p.value        delta.cfi 
+          33.609            2.000            0.000            0.006 
+delta.cfi.scaled 
+           0.007 
+
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="structural-equation-modelling">Structural Equation Modelling</h2>
+<p><a name="sem"></a></p>
+<p>Here is an example mplus model with output set to mimic Mplus</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="o">%%</span>R
+<span class="c1">## Structural equation modelling</span>
+model <span class="o">&lt;-</span>  <span class="s">'</span>
+<span class="s">selfConcept =~ ST32Q02 + ST32Q04 + ST32Q06 + ST32Q07 + ST32Q09</span>
+<span class="s">anxiety =~ ST32Q01 + ST32Q03 + ST32Q05 + ST32Q08 + ST32Q10</span>
+<span class="s">selfConcept ~ MATH + READ + SCIE</span>
+<span class="s">anxiety ~ MATH + READ + SCIE</span>
+<span class="s">'</span>
+<span class="c1"># Model without population corrections</span>
+fit <span class="o">&lt;-</span> sem<span class="p">(</span>model<span class="p">,</span> data<span class="o">=</span>pisaPv<span class="p">[[</span><span class="m">1</span><span class="p">]],</span> estimator <span class="o">=</span> <span class="s">'MLR'</span><span class="p">,</span> missing <span class="o">=</span> <span class="s">'default'</span><span class="p">)</span>
+<span class="c1"># Model with population corrections</span>
+fitSurvey <span class="o">&lt;-</span> lavaan.survey<span class="p">(</span>fit<span class="p">,</span> pisaSurvey<span class="p">)</span>
+<span class="c1"># Summary statistics</span>
+<span class="kp">summary</span><span class="p">(</span>fitSurvey<span class="p">,</span> fit.measures <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> standardized <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_text output_subarea ">
+<pre>lavaan (0.5-17) converged normally after  55 iterations
+
+  Number of observations                          1180
+
+  Estimator                                         ML      Robust
+  Minimum Function Test Statistic              383.363     139.514
+  Degrees of freedom                                58          58
+  P-value (Chi-square)                           0.000       0.000
+  Scaling correction factor                                  2.748
+    for the Satorra-Bentler correction
+
+Model test baseline model:
+
+  Minimum Function Test Statistic             6753.126    3201.473
+  Degrees of freedom                                75          75
+  P-value                                        0.000       0.000
+
+User model versus baseline model:
+
+  Comparative Fit Index (CFI)                    0.951       0.974
+  Tucker-Lewis Index (TLI)                       0.937       0.966
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)             -14310.110  -14310.110
+  Loglikelihood unrestricted model (H1)     -14118.428  -14118.428
+
+  Number of free parameters                         37          37
+  Akaike (AIC)                               28694.219   28694.219
+  Bayesian (BIC)                             28881.930   28881.930
+  Sample-size adjusted Bayesian (BIC)        28764.405   28764.405
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.069       0.035
+  90 Percent Confidence Interval          0.062  0.076       0.030  0.039
+  P-value RMSEA &lt;= 0.05                          0.000       1.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.032       0.032
+
+Parameter estimates:
+
+  Information                                 Expected
+  Standard Errors                           Robust.sem
+
+                   Estimate  Std.err  Z-value  P(&gt;|z|)   Std.lv  Std.all
+Latent variables:
+  selfConcept =~
+    ST32Q02           1.000                               0.698    0.820
+    ST32Q04          -0.814    0.060  -13.491    0.000   -0.568   -0.746
+    ST32Q06          -0.948    0.036  -26.110    0.000   -0.662   -0.822
+    ST32Q07          -1.036    0.043  -23.840    0.000   -0.723   -0.771
+    ST32Q09          -0.890    0.038  -23.503    0.000   -0.621   -0.761
+  anxiety =~
+    ST32Q01           1.000                               0.559    0.715
+    ST32Q03           0.982    0.065   14.997    0.000    0.548    0.742
+    ST32Q05           0.892    0.058   15.431    0.000    0.499    0.730
+    ST32Q08           1.044    0.062   16.735    0.000    0.584    0.779
+    ST32Q10           0.980    0.068   14.441    0.000    0.548    0.599
+
+Regressions:
+  selfConcept ~
+    MATH              0.483    0.052    9.329    0.000    0.692    0.664
+    READ             -0.297    0.045   -6.551    0.000   -0.426   -0.403
+    SCIE              0.070    0.057    1.234    0.217    0.101    0.095
+  anxiety ~
+    MATH              0.324    0.047    6.868    0.000    0.579    0.556
+    READ             -0.214    0.032   -6.737    0.000   -0.384   -0.363
+    SCIE              0.082    0.046    1.789    0.074    0.147    0.139
+
+Covariances:
+  selfConcept ~~
+    anxiety           0.244    0.013   18.535    0.000    0.799    0.799
+
+Intercepts:
+    ST32Q02           2.701    0.024  113.946    0.000    2.701    3.174
+    ST32Q04           2.312    0.029   80.888    0.000    2.312    3.038
+    ST32Q06           2.473    0.034   73.044    0.000    2.473    3.071
+    ST32Q07           2.755    0.027  102.246    0.000    2.755    2.937
+    ST32Q09           2.786    0.034   82.650    0.000    2.786    3.413
+    ST32Q01           2.406    0.028   87.283    0.000    2.406    3.080
+    ST32Q03           2.831    0.027  104.849    0.000    2.831    3.831
+    ST32Q05           2.855    0.034   84.590    0.000    2.855    4.180
+    ST32Q08           2.894    0.027  107.116    0.000    2.894    3.864
+    ST32Q10           2.274    0.049   46.017    0.000    2.274    2.488
+    selfConcept       0.000                               0.000    0.000
+    anxiety           0.000                               0.000    0.000
+
+Variances:
+    ST32Q02           0.237    0.018                      0.237    0.328
+    ST32Q04           0.257    0.027                      0.257    0.444
+    ST32Q06           0.211    0.014                      0.211    0.325
+    ST32Q07           0.357    0.019                      0.357    0.406
+    ST32Q09           0.281    0.017                      0.281    0.421
+    ST32Q01           0.298    0.023                      0.298    0.488
+    ST32Q03           0.245    0.012                      0.245    0.449
+    ST32Q05           0.218    0.021                      0.218    0.467
+    ST32Q08           0.221    0.024                      0.221    0.393
+    ST32Q10           0.536    0.032                      0.536    0.641
+    selfConcept       0.369    0.021                      0.758    0.758
+    anxiety           0.252    0.025                      0.806    0.806
+
+
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="sem-multigroup">SEM - Multigroup</h2>
+<p><a name="semInvariance"></a></p>
+<p>Here is an example multigroup SEM. Here we use the power of R's regular expresions to extract ONLY the regression estimates for boys and girls.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="o">%%</span>R
+<span class="c1">## Multigroup SEM</span>
+fit <span class="o">&lt;-</span> sem<span class="p">(</span>model<span class="p">,</span> data<span class="o">=</span>pisaPv<span class="p">[[</span><span class="m">1</span><span class="p">]],</span> estimator <span class="o">=</span> <span class="s">'MLR'</span><span class="p">,</span> missing <span class="o">=</span> <span class="s">'default'</span><span class="p">,</span> group <span class="o">=</span> <span class="s">'gender'</span><span class="p">,</span>
+		   group.equal <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">"loadings"</span><span class="p">))</span>
+<span class="c1"># Summary statistics</span>
+out <span class="o">&lt;-</span> standardizedsolution<span class="p">(</span>fit<span class="p">)</span>
+regression <span class="o">&lt;-</span> <span class="kp">intersect</span><span class="p">(</span><span class="kp">grep</span><span class="p">(</span><span class="s">"(MATH|READ|SCIE)"</span><span class="p">,</span> out<span class="o">$</span>rhs<span class="p">),</span> <span class="kp">grep</span><span class="p">(</span><span class="s">"(selfConcept|anxiety)"</span><span class="p">,</span> out<span class="o">$</span>lhs<span class="p">)</span> <span class="p">)</span>
+<span class="kp">print</span><span class="p">(</span>out<span class="p">[</span>regression<span class="p">,])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_text output_subarea ">
+<pre>           lhs op  rhs group est.std    se      z pvalue
+1  selfConcept  ~ MATH     1   0.712 0.073  9.737  0.000
+2  selfConcept  ~ READ     1  -0.493 0.082 -6.036  0.000
+3  selfConcept  ~ SCIE     1   0.227 0.086  2.624  0.009
+4      anxiety  ~ MATH     1   0.607 0.084  7.219  0.000
+5      anxiety  ~ READ     1  -0.476 0.091 -5.241  0.000
+6      anxiety  ~ SCIE     1   0.237 0.100  2.377  0.017
+7  selfConcept  ~ MATH     2   0.504 0.076  6.673  0.000
+8  selfConcept  ~ READ     2  -0.159 0.082 -1.943  0.052
+9  selfConcept  ~ SCIE     2   0.049 0.084  0.587  0.557
+10     anxiety  ~ MATH     2   0.440 0.070  6.321  0.000
+11     anxiety  ~ READ     2  -0.111 0.080 -1.391  0.164
+12     anxiety  ~ SCIE     2   0.052 0.091  0.568  0.570
+
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="additional-functions">Additional functions</h2>
+<p><a name="additional"></a></p>
+<p>semTools together with lavaan will do pretty much anything including power analysis, power analysis for multiple groups, compare fitted models, deal with multiple imputations, longInvariance (for longitudinal invariance), latent interactions and ploting of those interactions, imposeStart (same as svalues in mplus), net (Test whether models are equivalent or nested)</p>
+<p>The <a href="http://simsem.org/">simsem</a> package will run SEM simulations via lavaan</p>
+<p><a href="http://xxm.times.uh.edu/">xxM</a> will run multilevel SEM. It uses either LISREL style syntax or AMOS style graphics based model development.</p>
+<p><a href="http://openmx.psyc.virginia.edu/">openMX</a> will run everything (mixture, latent profile, growth mixture, multilevel, everything else).</p>
+</div>
+</div>
+</div>
+
+
+     <!-- <hr/> -->
+     <div class="row hidden-print">
+      <div class="span12 text-center">
+        <a href="http://nbviewer.ipython.org/github/pdparker/rcourse/blob/master/SEM.ipynb#">Back to top</a>
+      </div>
+    </div>
+
+     <!-- Footer
+     ================================================== -->
+      
+      <footer class="footer hidden-print">
+      <div class="span12 row-fluid footer-row">
+          <div class="span4">
+            <p>This web site does not host notebooks, it only renders notebooks available on other websites.</p>
+          </div>
+
+          <div class="span4">
+            <p>Delivered by <a href="http://www.fastly.com/">Fastly</a>, Rendered by <a href="https://developer.rackspace.com/?nbviewer=awesome">Rackspace</a></p>
+            <p>nbviewer GitHub <a href="https://github.com/jupyter/nbviewer">repository</a>.</p>
+          </div>
+
+          <div class="span4">
+            
+
+              
+                <p>
+                    nbviewer version:
+                    <a href="https://github.com/jupyter/nbviewer/commit/852295b1eba6ea0f208cdd998fddc5d354aa2efa">852295b</a>
+                </p>
+              
+            
+
+<p class="text-muted">
+    IPython version: 2.4.1-maint
+    
+</p>
+
+
+            
+
+            
+
+<p class="text-muted">
+Rendered <span class="date" data-date="Sat, 28 Feb 2015 09:28:26 UTC" title="Sat, 28 Feb 2015 09:28:26 UTC">a few seconds ago</span>
+</p>
+
+
+          </div>
+      </div>
+      </footer>
+      
+
+    </div><!-- /container -->
+
+    <script src="./SEM.ipynb_files/bootstrap.min.js"></script>
+    <script src="./SEM.ipynb_files/headroom.min.js"></script>
+    <script src="./SEM.ipynb_files/jQuery.headroom.min.js"></script>
+
+
+    
+    
+    
+    <script>
+    $(document).ready(
+                function(){
+                    $("#menubar").headroom({
+                        "tolerance": 5,
+                        "offset": 205,
+                        "classes": {
+                            "initial": "animated",
+                            "pinned": "slideInDown",
+                            "unpinned": "slideOutUp"
+                        }
+                    })
+                }
+            );
+    </script>
+
+
+    <!-- Analytics
+    ================================================== -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-38683231-2', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    <script>
+        var update_date  = function(){
+            var str = window.moment($('.date').data('date')).fromNow();
+            $('.date').text(str);
+        }
+        setInterval(update_date , 61*1000);
+        $(update_date);
+    </script>
+    <!--NEW RELIC Stop Perf Measurement-->
+    
+    <!--NEW RELIC End-->
+  
+</body></html>
